@@ -193,10 +193,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d3a28db10002084390b0f76d794c43e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHitpoints: 100
+  hitpoints: 0
+  damage: 10
   speed: 300
   rb: {fileID: 7036426893081653083}
   textObj: {fileID: 925653303147582746}
   projectile: {fileID: 7084381907914178648, guid: 36e0b4d91e182a84f945c0197e8660e8, type: 3}
+  slider: {fileID: 0}
 --- !u!61 &7036426893081653082
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -207,7 +211,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

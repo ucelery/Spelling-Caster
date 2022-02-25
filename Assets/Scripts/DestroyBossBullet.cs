@@ -6,12 +6,15 @@ public class DestroyBossBullet : MonoBehaviour
 {
     public GameObject hitEffect;
     public GameObject collision;
+    public float dmg;
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D col)
     {
-        GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
-        Destroy(effect, 1f);
-        Destroy(gameObject);
-        collision.gameObject.GetComponent<PlayerController>().DamagePlayer(10f);
+        if (col.gameObject.CompareTag("Player")) {
+            GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
+            Destroy(effect, 1f);
+            Destroy(gameObject);
+            col.gameObject.GetComponent<PlayerController>().DamagePlayer(dmg);
+        }
     }
 }

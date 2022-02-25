@@ -11,17 +11,20 @@ public class PlayerController : MonoBehaviour
 	public float maxHitpoints = 100f;
 	public float hitpoints;
 	public float damage = 10f;
-
 	public float speed = 10f;
+
+	[Header("Required GameObjects")]
 	public Rigidbody2D rb;
 	public GameObject textObj;
 	public GameObject projectile;
 	public Slider slider;
 
-	[Header("Required GameObjects")]
 	private string[] fileLines;
 	private string remainingWord = string.Empty;
 	private string currentWord = string.Empty;
+
+	[Header("Misc")]
+	public float slowdownFactor = 0.05f;
 
 	void Start() {
 		hitpoints = maxHitpoints;
@@ -39,18 +42,18 @@ public class PlayerController : MonoBehaviour
 	void Update() {
 		Move();
 		CheckInput();
-
-		// !! FOR TESTING
-		if (Input.GetKeyDown(KeyCode.Space)) {
-			DamagePlayer(10f);
-		}
 	}
 
 	public void DamagePlayer(float damage) {
+		// Camera Shake
+		StartCoroutine(Camera.main.GetComponent<CameraMotor>().Shake(0.2f, 0.03f));
+
 		hitpoints -= damage;
 		slider.value = hitpoints;
+
 		if (hitpoints <= 0) {
 			// Gameover
+			Time.timeScale = slowdownFactor;
 		}
 	}
 
@@ -73,6 +76,7 @@ public class PlayerController : MonoBehaviour
 
 	private void Attack() {
 		Instantiate(projectile, transform.position, transform.rotation);
+		projectile.GetComponent<PlayerProjectile>().damage = 10f;
 	}
 
 	private void MoveLeft() {
