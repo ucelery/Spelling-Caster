@@ -45,7 +45,10 @@ public class Enemy : MonoBehaviour
 	public float cooldown;
 	public float bulletSpread = 0;
 
-	float xPosDir = -2.25f;
+	public float maxLeftXPos = -3.20f;
+	public float maxRightXPos = 3.20f;
+
+	float xPosDir;
 	bool isAttacking = false;
 
 	void Start() {
@@ -85,12 +88,12 @@ public class Enemy : MonoBehaviour
 							break;
 						case AttackPattern.LeftRight:
 							bulletSpread = 0f;
-							xPosDir = -2.25f;
+							xPosDir = maxLeftXPos;
 							StartCoroutine(ShootLeftRight());
 							break;
 						case AttackPattern.RightLeft:
 							bulletSpread = 0f;
-							xPosDir = 2.5f;
+							xPosDir = maxRightXPos;
 							StartCoroutine(ShootRightLeft());
 							break;
 					}
@@ -170,7 +173,7 @@ public class Enemy : MonoBehaviour
 	IEnumerator ShootLeftRight() {
 		GameObject proj = Instantiate(projectile, transform.position, Quaternion.identity);
 		Vector2 myPos = transform.position;
-		Vector2 targetPos = new Vector2(xPosDir, -4);
+		Vector2 targetPos = new Vector2(xPosDir, -1.25f);
 
 		var randomNumberX = Random.Range(-bulletSpread, bulletSpread);
 		var randomNumberY = Random.Range(-bulletSpread, bulletSpread);
@@ -189,7 +192,7 @@ public class Enemy : MonoBehaviour
 	IEnumerator ShootRightLeft() {
 		GameObject proj = Instantiate(projectile, transform.position, Quaternion.identity);
 		Vector2 myPos = transform.position;
-		Vector2 targetPos = new Vector2(xPosDir, -4);
+		Vector2 targetPos = new Vector2(xPosDir, -1.25f);
 
 		var randomNumberX = Random.Range(-bulletSpread, bulletSpread);
 		var randomNumberY = Random.Range(-bulletSpread, bulletSpread);
