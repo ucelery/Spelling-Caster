@@ -117,13 +117,13 @@ public class Enemy : MonoBehaviour
 		audioSource.Play();
 
 		if (hitpoints <= 0) {
+			alive = false;
 			Terminate();
 		}
 	}
 
 	public void Terminate() {
 		// death animation
-		alive = false;
 		audioSource.clip = deathClip;
 		audioSource.Play();
 		StartCoroutine(DestroyDelay(destroyDelay));
@@ -155,7 +155,7 @@ public class Enemy : MonoBehaviour
 		proj.GetComponent<EnemyProjectile>().projectileForce = projectileForce;
 
 		yield return new WaitForSeconds(atkDelay);
-		if (state == State.Attacking)
+		if (state == State.Attacking && alive)
 			StartCoroutine(ShootPlayer());
 	}
 
@@ -182,7 +182,7 @@ public class Enemy : MonoBehaviour
 		proj.GetComponent<EnemyProjectile>().projectileForce = projectileForce;
 		yield return new WaitForSeconds(atkDelay);
 		xPosDir += (atkDelay / atkDuration) * atkDuration;
-		if (state == State.Attacking)
+		if (state == State.Attacking && alive)
 			StartCoroutine(ShootLeftRight());
 	}
 
@@ -202,7 +202,7 @@ public class Enemy : MonoBehaviour
 		yield return new WaitForSeconds(atkDelay);
 
 		xPosDir -= (atkDelay / atkDuration) * atkDuration;
-		if (state == State.Attacking)
+		if (state == State.Attacking && alive)
 			StartCoroutine(ShootRightLeft());
 	}
 
