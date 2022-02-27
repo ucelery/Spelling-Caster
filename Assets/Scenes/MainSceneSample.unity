@@ -14834,6 +14834,10 @@ PrefabInstance:
       propertyPath: damage
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5977171934062469659, guid: 1346bdd02a2ac75468160534c966b924, type: 3}
+      propertyPath: m_SortingOrder
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7751346039423730636, guid: 1346bdd02a2ac75468160534c966b924, type: 3}
       propertyPath: m_Size.x
       value: 0.53553444
