@@ -4,20 +4,31 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+	// ANIMATIONS
+	private string PLAYER_RUN_LEFT = "RunningLeft";
+	private string PLAYER_RUN_RIGHT = "Running";
+	private string PLAYER_IDLE = "Idle";
+	private string PLAYER_DEATH_ANIM = "Death";
+
 	[Header("Player Stats")]
 	public float maxHitpoints = 100f;
 	public float hitpoints;
 	public float damage = 10f;
 	public float speed = 10f;
+	public float deathDelay = 1f;
+
+	public bool isAlive = true;
 
 	[Header("Required GameObjects")]
 	public Rigidbody2D rb;
 	public GameObject textObj;
 	public GameObject projectile;
 	public Slider slider;
+	public Animator anim;
 
 	// public GameObject debugX;
 
@@ -27,7 +38,7 @@ public class PlayerController : MonoBehaviour
 	private string currentWord = string.Empty;
 
 	[Header("Misc")]
-	public float slowdownFactor = 0.05f;
+	public float slowdownFactor = 0.5f;
 
 	TouchScreenKeyboard onScreenKb;
 	private float dirX;
@@ -55,14 +66,43 @@ public class PlayerController : MonoBehaviour
 	}
 
 	void Update() {
-		CheckInput();
+		if (isAlive) {
+			CheckInput();
+			Animate();
+		}
+	}
+
+	private void Animate() {
+		if (SystemInfo.deviceType != DeviceType.Handheld) {
+			if (rb.velocity.x >= 0) {
+				anim.Play(PLAYER_RUN_RIGHT);
+			}
+			else if (rb.velocity.x < 0) {
+				anim.Play(PLAYER_RUN_LEFT);
+			}
+			else {
+				anim.Play(PLAYER_IDLE);
+			}
+		} else {
+			if (Input.acceleration.x >= 0.5) {
+				anim.Play(PLAYER_RUN_RIGHT);
+			}
+			else if (Input.acceleration.x <= -0.5) {
+				anim.Play(PLAYER_RUN_LEFT);
+			}
+			else {
+				anim.Play(PLAYER_IDLE);
+			}
+		}
 	}
 
 	private void FixedUpdate() {
-		TiltInput();
+		if (isAlive) {
+			TiltInput();
 
-		if (SystemInfo.deviceType != DeviceType.Handheld) {
-			Move();
+			if (SystemInfo.deviceType != DeviceType.Handheld) {
+				Move();
+			}
 		}
 	}
 
@@ -75,7 +115,9 @@ public class PlayerController : MonoBehaviour
 
 		if (hitpoints <= 0) {
 			// Gameover
-			Time.timeScale = slowdownFactor;
+			rb.velocity = new Vector2(0, 0);
+			isAlive = false;
+			StartCoroutine(PlayDeathAnimation());
 		}
 	}
 
@@ -95,7 +137,7 @@ public class PlayerController : MonoBehaviour
 	}
 
 	private void CheckInput() {
-		if (onScreenKb.status == TouchScreenKeyboard.Status.Done) {
+		if (onScreenKb != null && onScreenKb.status == TouchScreenKeyboard.Status.Done) {
 			if (IsWordCorrect(onScreenKb.text)) {
 				SetCurrentWord();
 				Attack();
@@ -106,7 +148,7 @@ public class PlayerController : MonoBehaviour
 
 		// debugX.GetComponent<TextMesh>().text = onScreenKb.status.ToString();
 		
-		if (onScreenKb.status == TouchScreenKeyboard.Status.Canceled) {
+		if (onScreenKb != null && onScreenKb.status == TouchScreenKeyboard.Status.Canceled) {
 			onScreenKb = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default, false, false, true);
 		}
 
@@ -119,7 +161,8 @@ public class PlayerController : MonoBehaviour
 
 	private void Attack() {
 		Instantiate(projectile, transform.position, transform.rotation);
-		projectile.GetComponent<PlayerProjectile>().damage = 10f;
+		projectile.GetComponent<PlayerProjectile>().damage = damage;
+		Debug.Log(projectile.GetComponent<PlayerProjectile>().damage);
 	}
 
 	private void MoveLeft() {
@@ -178,5 +221,16 @@ public class PlayerController : MonoBehaviour
 		if (transform.position.x > 0) return true;
 		else if (transform.position.y < 6.5) return true;
 		return false;
+	}
+
+	IEnumerator PlayDeathAnimation() {
+		yield return new WaitForSeconds(deathDelay);
+		anim.Play(PLAYER_DEATH_ANIM);
+		StartCoroutine(ChangeScene("GameOver", 1f));
+	}
+
+	IEnumerator ChangeScene(string name, float delay) {
+		yield return new WaitForSeconds(delay);
+		SceneManager.LoadScene(name);
 	}
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOverScreen : MonoBehaviour
 {
@@ -18,21 +19,22 @@ public class GameOverScreen : MonoBehaviour
 	private float startDelay = 3.5f;
 
 	private bool donePlaying = false;
-	void Start()
-	{
+	void Start() {
 
 	}
 
-	void Update()
-	{
-		if (fading)
-		{
+	void Update() {
+		HandleInputs();
+		FadeAnimation();
+	}
+
+	void FadeAnimation() {
+		if (fading) {
 			fadeValue -= fadeSpeed;
 			if (fadeValue <= -0.5)
 				fading = false;
 		}
-		else
-		{
+		else {
 			fadeValue += fadeSpeed;
 			if (fadeValue > 2)
 				fading = true;
@@ -48,9 +50,21 @@ public class GameOverScreen : MonoBehaviour
 		}
 	}
 
+	void HandleInputs() {
+		if (Input.touchCount > 0) {
+			Debug.Log(Input.touchCount);
+			StartCoroutine(Starting());
+		}
+
+		if (Input.GetMouseButtonDown(0)) {
+			StartCoroutine(Starting());
+		}
+	}
+
 	IEnumerator Starting()
 	{
+		fadeSpeed = 0.3f;
 		yield return new WaitForSeconds(startDelay);
-		// Change To Main Scene
+		SceneManager.LoadScene("TitleScreen");
 	}
 }

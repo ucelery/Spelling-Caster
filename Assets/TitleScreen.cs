@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TitleScreen : MonoBehaviour {
 	[Header("BGM")]
@@ -21,6 +22,22 @@ public class TitleScreen : MonoBehaviour {
 	}
 
 	void Update() {
+		HandleInputs();
+		FadePrompt();
+	}
+
+	void HandleInputs() {
+		if (Input.touchCount > 0) {
+			Debug.Log(Input.touchCount);
+			StartCoroutine(Starting());
+		}
+
+		if (Input.GetMouseButtonDown(0)) {
+			StartCoroutine(Starting());
+		}
+	}
+
+	void FadePrompt() {
 		if (fading) {
 			fadeValue -= fadeSpeed;
 			if (fadeValue <= -0.5)
@@ -30,9 +47,9 @@ public class TitleScreen : MonoBehaviour {
 			fadeValue += fadeSpeed;
 			if (fadeValue > 2)
 				fading = true;
-			
+
 		}
-			
+
 
 		prompt.GetComponent<CanvasGroup>().alpha = fadeValue;
 
@@ -47,6 +64,6 @@ public class TitleScreen : MonoBehaviour {
 
 	IEnumerator Starting() {
 		yield return new WaitForSeconds(startDelay);
-		// Change To Main Scene
+		SceneManager.LoadScene("MainSceneSample");
 	}
 }

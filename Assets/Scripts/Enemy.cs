@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+	private string CASTING = "Attack";
+	private string IDLE = "Idle";
 	public enum State { 
 		Idle, Attacking, Damaged
 	}
@@ -19,6 +21,8 @@ public class Enemy : MonoBehaviour
 	public Slider slider;
 	public AudioSource audioSource;
 	public GameObject spawner;
+	public GameObject projectilePoint;
+	public Animator anim;
 
 	public AudioClip deathClip;
 
@@ -61,7 +65,7 @@ public class Enemy : MonoBehaviour
 	}
 
 	void FixedUpdate() {
-		if (alive) {
+		if (alive && player.GetComponent<PlayerController>().isAlive) {
 			HandleStates();
 		}
 	}
@@ -72,6 +76,7 @@ public class Enemy : MonoBehaviour
 				if (!isIdling) {
 					isIdling = true;
 					StartCoroutine(IdleTimer());
+					anim.Play(IDLE);
 				}
 				break;
 			case State.Attacking:
@@ -144,8 +149,9 @@ public class Enemy : MonoBehaviour
 	}
 
 	IEnumerator ShootPlayer() {
-		GameObject proj = Instantiate(projectile, transform.position, Quaternion.identity);
-		Vector2 myPos = transform.position;
+		anim.Play(CASTING, 0, 0f);
+		GameObject proj = Instantiate(projectile, projectilePoint.transform.position, Quaternion.identity);
+		Vector2 myPos = projectilePoint.transform.position;
 		Vector2 targetPos = player.position;
 
 		var randomNumberX = Random.Range(-bulletSpread, bulletSpread);
@@ -158,7 +164,7 @@ public class Enemy : MonoBehaviour
 		proj.GetComponent<EnemyProjectile>().projectileForce = projectileForce;
 
 		yield return new WaitForSeconds(atkDelay);
-		if (state == State.Attacking && alive)
+		if (state == State.Attacking && alive && player.GetComponent<PlayerController>().isAlive)
 			StartCoroutine(ShootPlayer());
 	}
 
@@ -171,8 +177,9 @@ public class Enemy : MonoBehaviour
 	}
 
 	IEnumerator ShootLeftRight() {
-		GameObject proj = Instantiate(projectile, transform.position, Quaternion.identity);
-		Vector2 myPos = transform.position;
+		anim.Play(CASTING, 0, 0f);
+		GameObject proj = Instantiate(projectile, projectilePoint.transform.position, Quaternion.identity);
+		Vector2 myPos = projectilePoint.transform.position;
 		Vector2 targetPos = new Vector2(xPosDir, -1.25f);
 
 		var randomNumberX = Random.Range(-bulletSpread, bulletSpread);
@@ -185,13 +192,14 @@ public class Enemy : MonoBehaviour
 		proj.GetComponent<EnemyProjectile>().projectileForce = projectileForce;
 		yield return new WaitForSeconds(atkDelay);
 		xPosDir += (atkDelay / atkDuration) * atkDuration;
-		if (state == State.Attacking && alive)
+		if (state == State.Attacking && alive && player.GetComponent<PlayerController>().isAlive)
 			StartCoroutine(ShootLeftRight());
 	}
 
 	IEnumerator ShootRightLeft() {
-		GameObject proj = Instantiate(projectile, transform.position, Quaternion.identity);
-		Vector2 myPos = transform.position;
+		anim.Play(CASTING, 0, 0f);
+		GameObject proj = Instantiate(projectile, projectilePoint.transform.position, Quaternion.identity);
+		Vector2 myPos = projectilePoint.transform.position;
 		Vector2 targetPos = new Vector2(xPosDir, -1.25f);
 
 		var randomNumberX = Random.Range(-bulletSpread, bulletSpread);
@@ -205,7 +213,7 @@ public class Enemy : MonoBehaviour
 		yield return new WaitForSeconds(atkDelay);
 
 		xPosDir -= (atkDelay / atkDuration) * atkDuration;
-		if (state == State.Attacking && alive)
+		if (state == State.Attacking && alive && player.GetComponent<PlayerController>().isAlive)
 			StartCoroutine(ShootRightLeft());
 	}
 
