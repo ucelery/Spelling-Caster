@@ -14907,7 +14907,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5977171934062469658, guid: 1346bdd02a2ac75468160534c966b924, type: 3}
       propertyPath: projectileForce
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5977171934062469659, guid: 1346bdd02a2ac75468160534c966b924, type: 3}
       propertyPath: m_SortingOrder
@@ -20168,7 +20168,7 @@ PrefabInstance:
       objectReference: {fileID: 566903168}
     - target: {fileID: 5655901542652550947, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
       propertyPath: damage
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5655901542652550947, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
       propertyPath: slider

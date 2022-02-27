@@ -74,10 +74,10 @@ public class PlayerController : MonoBehaviour
 
 	private void Animate() {
 		if (SystemInfo.deviceType != DeviceType.Handheld) {
-			if (rb.velocity.x >= 1) {
+			if (rb.velocity.x >= 0) {
 				anim.Play(PLAYER_RUN_RIGHT);
 			}
-			else if (rb.velocity.x <= -1) {
+			else if (rb.velocity.x < 0) {
 				anim.Play(PLAYER_RUN_LEFT);
 			}
 			else {
@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
 	}
 
 	private void CheckInput() {
-		if (onScreenKb.status == TouchScreenKeyboard.Status.Done) {
+		if (onScreenKb != null && onScreenKb.status == TouchScreenKeyboard.Status.Done) {
 			if (IsWordCorrect(onScreenKb.text)) {
 				SetCurrentWord();
 				Attack();
@@ -148,7 +148,7 @@ public class PlayerController : MonoBehaviour
 
 		// debugX.GetComponent<TextMesh>().text = onScreenKb.status.ToString();
 		
-		if (onScreenKb.status == TouchScreenKeyboard.Status.Canceled) {
+		if (onScreenKb != null && onScreenKb.status == TouchScreenKeyboard.Status.Canceled) {
 			onScreenKb = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default, false, false, true);
 		}
 
