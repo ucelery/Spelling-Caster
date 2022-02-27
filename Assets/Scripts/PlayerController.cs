@@ -161,7 +161,8 @@ public class PlayerController : MonoBehaviour
 
 	private void Attack() {
 		Instantiate(projectile, transform.position, transform.rotation);
-		projectile.GetComponent<PlayerProjectile>().damage = 10f;
+		projectile.GetComponent<PlayerProjectile>().damage = damage;
+		Debug.Log(projectile.GetComponent<PlayerProjectile>().damage);
 	}
 
 	private void MoveLeft() {
