@@ -61,7 +61,7 @@ public class Enemy : MonoBehaviour
 	}
 
 	void FixedUpdate() {
-		if (alive) {
+		if (alive && player.GetComponent<PlayerController>().isAlive) {
 			HandleStates();
 		}
 	}
@@ -158,7 +158,7 @@ public class Enemy : MonoBehaviour
 		proj.GetComponent<EnemyProjectile>().projectileForce = projectileForce;
 
 		yield return new WaitForSeconds(atkDelay);
-		if (state == State.Attacking && alive)
+		if (state == State.Attacking && alive && player.GetComponent<PlayerController>().isAlive)
 			StartCoroutine(ShootPlayer());
 	}
 
@@ -185,7 +185,7 @@ public class Enemy : MonoBehaviour
 		proj.GetComponent<EnemyProjectile>().projectileForce = projectileForce;
 		yield return new WaitForSeconds(atkDelay);
 		xPosDir += (atkDelay / atkDuration) * atkDuration;
-		if (state == State.Attacking && alive)
+		if (state == State.Attacking && alive && player.GetComponent<PlayerController>().isAlive)
 			StartCoroutine(ShootLeftRight());
 	}
 
@@ -205,7 +205,7 @@ public class Enemy : MonoBehaviour
 		yield return new WaitForSeconds(atkDelay);
 
 		xPosDir -= (atkDelay / atkDuration) * atkDuration;
-		if (state == State.Attacking && alive)
+		if (state == State.Attacking && alive && player.GetComponent<PlayerController>().isAlive)
 			StartCoroutine(ShootRightLeft());
 	}
 
