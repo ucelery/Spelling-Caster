@@ -198,6 +198,8 @@ MonoBehaviour:
   hitpoints: 0
   damage: 10
   speed: 300
+  deathDelay: 1
+  isAlive: 1
   rb: {fileID: 5655901542652550950}
   textObj: {fileID: 2522913268952458599}
   projectile: {fileID: 7084381907914178648, guid: 36e0b4d91e182a84f945c0197e8660e8, type: 3}
@@ -217,7 +219,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.028039217, y: -0.17470592}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -228,7 +230,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.38313687, y: 0.78862727}
   m_EdgeRadius: 0
 --- !u!50 &5655901542652550950
 Rigidbody2D:
