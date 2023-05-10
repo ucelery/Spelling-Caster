@@ -1,0 +1,990 @@
+fileFormatVersion: 2
+guid: 625e5ffe775be794f8f104ef744b5238
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2789869647701826152
+    second: Keyboard Letters and Symbols_0
+  - first:
+      213: 3071471213083671370
+    second: Keyboard Letters and Symbols_1
+  - first:
+      213: -3836678269060062180
+    second: Keyboard Letters and Symbols_2
+  - first:
+      213: 1106243997726028932
+    second: Keyboard Letters and Symbols_3
+  - first:
+      213: -5972714907727264938
+    second: Keyboard Letters and Symbols_4
+  - first:
+      213: -5551020186560907869
+    second: Keyboard Letters and Symbols_5
+  - first:
+      213: 3964675571451518880
+    second: Keyboard Letters and Symbols_6
+  - first:
+      213: 6307927082822565534
+    second: Keyboard Letters and Symbols_7
+  - first:
+      213: -3763986617037038640
+    second: Keyboard Letters and Symbols_8
+  - first:
+      213: -8312126185654249512
+    second: Keyboard Letters and Symbols_9
+  - first:
+      213: 5036632007674682219
+    second: Keyboard Letters and Symbols_10
+  - first:
+      213: -4974876540106418122
+    second: Keyboard Letters and Symbols_11
+  - first:
+      213: 357174525351675111
+    second: Keyboard Letters and Symbols_12
+  - first:
+      213: 7842587756821644136
+    second: Keyboard Letters and Symbols_13
+  - first:
+      213: -8819272233486428152
+    second: Keyboard Letters and Symbols_14
+  - first:
+      213: 142651849634139828
+    second: Keyboard Letters and Symbols_15
+  - first:
+      213: 4508224336728285508
+    second: A
+  - first:
+      213: -5455942424890694613
+    second: B
+  - first:
+      213: 4956734507076722715
+    second: C
+  - first:
+      213: -5131799650079341723
+    second: D
+  - first:
+      213: -173530099807541425
+    second: E
+  - first:
+      213: -4657369681490478202
+    second: F
+  - first:
+      213: 1782772731699165153
+    second: G
+  - first:
+      213: 6394709171306028739
+    second: H
+  - first:
+      213: 2710745863370659329
+    second: I
+  - first:
+      213: -4904863613219607633
+    second: J
+  - first:
+      213: -6105381759904045323
+    second: K
+  - first:
+      213: 4656255823361558748
+    second: L
+  - first:
+      213: 8669053438330781586
+    second: M
+  - first:
+      213: 4130028020911036013
+    second: N
+  - first:
+      213: 3494106018627158086
+    second: O
+  - first:
+      213: 940296708728247830
+    second: P
+  - first:
+      213: -7925945275110868319
+    second: Q
+  - first:
+      213: 5450837733094888678
+    second: R
+  - first:
+      213: 4703671688645843670
+    second: S
+  - first:
+      213: 1314405178279557413
+    second: T
+  - first:
+      213: 3736047271892612526
+    second: U
+  - first:
+      213: 2049701446520355930
+    second: V
+  - first:
+      213: -4273987248210171899
+    second: W
+  - first:
+      213: -7001356426653468312
+    second: X
+  - first:
+      213: -6624131965714748740
+    second: Y
+  - first:
+      213: -5247303477784991647
+    second: Z
+  - first:
+      213: 1442775774047016661
+    second: Keyboard Letters and Symbols_42
+  - first:
+      213: 3172778693654703001
+    second: Keyboard Letters and Symbols_43
+  - first:
+      213: -2473251527533082739
+    second: Keyboard Letters and Symbols_44
+  - first:
+      213: -7334964439987495310
+    second: Keyboard Letters and Symbols_45
+  - first:
+      213: -330859746147561109
+    second: Keyboard Letters and Symbols_46
+  - first:
+      213: -3232556446429483490
+    second: Keyboard Letters and Symbols_47
+  - first:
+      213: 2822831203041197976
+    second: Keyboard Letters and Symbols_48
+  - first:
+      213: 2615499289703449726
+    second: Keyboard Letters and Symbols_49
+  - first:
+      213: -5832479990301528302
+    second: Keyboard Letters and Symbols_50
+  - first:
+      213: 5146327731392827524
+    second: Keyboard Letters and Symbols_51
+  - first:
+      213: -6774229267181926167
+    second: Keyboard Letters and Symbols_52
+  - first:
+      213: 4678446715214429270
+    second: Keyboard Letters and Symbols_53
+  - first:
+      213: -1994998917992350955
+    second: Keyboard Letters and Symbols_54
+  - first:
+      213: 9206166920153520940
+    second: Keyboard Letters and Symbols_55
+  - first:
+      213: -6533535039584877969
+    second: Keyboard Letters and Symbols_56
+  - first:
+      213: -7404902333521379256
+    second: Keyboard Letters and Symbols_57
+  - first:
+      213: 1731141532272659582
+    second: Keyboard Letters and Symbols_58
+  - first:
+      213: -3539343274190285860
+    second: Keyboard Letters and Symbols_59
+  - first:
+      213: 3812120171615602238
+    second: Keyboard Letters and Symbols_60
+  - first:
+      213: -4913883323701409015
+    second: Keyboard Letters and Symbols_61
+  - first:
+      213: 7482840494134264618
+    second: Keyboard Letters and Symbols_62
+  - first:
+      213: 5832109118174174996
+    second: Keyboard Letters and Symbols_63
+  - first:
+      213: -2481098397943816152
+    second: Keyboard Letters and Symbols_64
+  - first:
+      213: -7689778622381557565
+    second: Keyboard Letters and Symbols_65
+  - first:
+      213: 8317107052555559626
+    second: Keyboard Letters and Symbols_66
+  - first:
+      213: 7714672218755998101
+    second: Keyboard Letters and Symbols_67
+  - first:
+      213: 6823926934301686120
+    second: Keyboard Letters and Symbols_68
+  - first:
+      213: 6295473509759874295
+    second: Keyboard Letters and Symbols_69
+  - first:
+      213: 4091218624039808963
+    second: Keyboard Letters and Symbols_70
+  - first:
+      213: 461988140111940979
+    second: Keyboard Letters and Symbols_71
+  - first:
+      213: -146808127016725577
+    second: Keyboard Letters and Symbols_72
+  - first:
+      213: -5622058524487270815
+    second: Keyboard Letters and Symbols_73
+  - first:
+      213: 3823145881913574723
+    second: Keyboard Letters and Symbols_74
+  - first:
+      213: 5401082568648363720
+    second: Keyboard Letters and Symbols_75
+  - first:
+      213: -1842030512180222064
+    second: Keyboard Letters and Symbols_76
+  - first:
+      213: -9132981546526902159
+    second: Keyboard Letters and Symbols_77
+  - first:
+      213: 5931848750657310225
+    second: Keyboard Letters and Symbols_78
+  - first:
+      213: -8112666114904800370
+    second: Keyboard Letters and Symbols_79
+  - first:
+      213: -2495766164836191286
+    second: Keyboard Letters and Symbols_80
+  - first:
+      213: -1651381542560842770
+    second: Keyboard Letters and Symbols_81
+  - first:
+      213: 2199982140710300514
+    second: Keyboard Letters and Symbols_82
+  - first:
+      213: 802676668381743686
+    second: Keyboard Letters and Symbols_83
+  - first:
+      213: -2902734860166519184
+    second: Keyboard Letters and Symbols_84
+  - first:
+      213: 8610578246002583686
+    second: Keyboard Letters and Symbols_85
+  - first:
+      213: -7887570810912317285
+    second: Keyboard Letters and Symbols_86
+  - first:
+      213: 8378731019718038223
+    second: Keyboard Letters and Symbols_87
+  - first:
+      213: 2143275760777317715
+    second: Keyboard Letters and Symbols_88
+  - first:
+      213: -4104101004193063423
+    second: Keyboard Letters and Symbols_89
+  - first:
+      213: 5675506186938851617
+    second: Keyboard Letters and Symbols_90
+  - first:
+      213: -4081626459705900336
+    second: Keyboard Letters and Symbols_91
+  - first:
+      213: 925260337837208143
+    second: Keyboard Letters and Symbols_92
+  - first:
+      213: 2571525798200377700
+    second: Keyboard Letters and Symbols_93
+  - first:
+      213: 2286948727498317708
+    second: Keyboard Letters and Symbols_94
+  - first:
+      213: -3408688422432208773
+    second: Keyboard Letters and Symbols_95
+  - first:
+      213: 1198169597291676085
+    second: Keyboard Letters and Symbols_96
+  - first:
+      213: 2594719166559807511
+    second: Keyboard Letters and Symbols_97
+  - first:
+      213: 7858568248951151414
+    second: Keyboard Letters and Symbols_98
+  - first:
+      213: -1229427105611912968
+    second: Keyboard Letters and Symbols_99
+  - first:
+      213: 4465586040497071296
+    second: Keyboard Letters and Symbols_100
+  - first:
+      213: -6524085668123138975
+    second: Keyboard Letters and Symbols_101
+  - first:
+      213: 7533599892442560869
+    second: Keyboard Letters and Symbols_102
+  - first:
+      213: 5776549953238374424
+    second: Keyboard Letters and Symbols_103
+  - first:
+      213: 5899432734191353344
+    second: Keyboard Letters and Symbols_104
+  - first:
+      213: 5314466904333119247
+    second: Keyboard Letters and Symbols_105
+  - first:
+      213: 2362928167920280035
+    second: Keyboard Letters and Symbols_106
+  - first:
+      213: -3794092626081161002
+    second: Keyboard Letters and Symbols_107
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: A
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 441e57e062e609e30800000000000000
+      internalID: 4508224336728285508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: B
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b24286975499844b0800000000000000
+      internalID: -5455942424890694613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: C
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b10aa34b5cbd9c440800000000000000
+      internalID: 4956734507076722715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5630c8e586f28c8b0800000000000000
+      internalID: -5131799650079341723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: E
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f47222b2b4f779df0800000000000000
+      internalID: -173530099807541425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68bf51353f2bd5fb0800000000000000
+      internalID: -4657369681490478202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: G
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e77e2c9a5eadb810800000000000000
+      internalID: 1782772731699165153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: H
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ced0a55c129eb850800000000000000
+      internalID: 6394709171306028739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: I
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 106519620018e9520800000000000000
+      internalID: 2710745863370659329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: J
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fab6e46e78c6eebb0800000000000000
+      internalID: -4904863613219607633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: K
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f625c613a3554ba0800000000000000
+      internalID: -6105381759904045323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: L
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd84fce50085e9040800000000000000
+      internalID: 4656255823361558748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: M
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29fb59aeb2aae4870800000000000000
+      internalID: 8669053438330781586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: N
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d66dfca6a9ec05930800000000000000
+      internalID: 4130028020911036013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: O
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64083df49ee8d7030800000000000000
+      internalID: 3494106018627158086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: P
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 616573befda9c0d00800000000000000
+      internalID: 940296708728247830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Q
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1aab4d704c2610290800000000000000
+      internalID: -7925945275110868319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: R
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e49a69d90445ab40800000000000000
+      internalID: 5450837733094888678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: S
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6da1ccdca7cc64140800000000000000
+      internalID: 4703671688645843670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 529794eab84bd3210800000000000000
+      internalID: 1314405178279557413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: U
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea5f939033b19d330800000000000000
+      internalID: 3736047271892612526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: V
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5c33771b90027c10800000000000000
+      internalID: 2049701446520355930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: W
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50822e70e3fbfa4c0800000000000000
+      internalID: -4273987248210171899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: X
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 869fb6bbc6f26de90800000000000000
+      internalID: -7001356426653468312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Y
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cba2346c21b5214a0800000000000000
+      internalID: -6624131965714748740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Z
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 128
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16824f1d945dd27b0800000000000000
+      internalID: -5247303477784991647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
