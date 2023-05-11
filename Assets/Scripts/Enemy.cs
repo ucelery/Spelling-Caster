@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.SymbolStore;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Enemy : MonoBehaviour
-{
+public class Enemy : MonoBehaviour {
+	public static int enemyLevel = 1;
+
 	private string CASTING = "Attack";
 	private string IDLE = "Idle";
 	public enum State { 
@@ -12,7 +14,7 @@ public class Enemy : MonoBehaviour
 	}
 
 	public enum AttackPattern {
-		Random, LeftRight, RightLeft, AtTarget
+		Random, LeftRight, RightLeft, AtTarget, NONE
 	}
 
 	private Transform player;
@@ -44,8 +46,9 @@ public class Enemy : MonoBehaviour
 	[Header("Attacking")]
 	public GameObject projectile;
 	public float atkDelay = 1f;
-	public float atkDuration = 2f;
-	public float projectileForce;
+    public float atkSpeed = 1f;
+    public float atkDuration = 2f;
+    public float projectileForce;
 	public float cooldown;
 	public float bulletSpread = 0;
 
@@ -55,14 +58,32 @@ public class Enemy : MonoBehaviour
 	float xPosDir;
 	bool isAttacking = false;
 
-	void Start() {
+	private AttackPattern randomPattern = AttackPattern.NONE;
+
+    void Start() {
+		InitializeValues();
+
 		spawner = GameObject.Find("Game Manager"); // Bad Practice
 		audioSource = gameObject.GetComponent<AudioSource>();
 		player = GameObject.FindGameObjectWithTag("Player").transform;
 		hitpoints = maxHitpoints;
 		slider = GameObject.Find("Enemy HP Bar").GetComponent<Slider>(); // Bad Practice
 		slider.value = hitpoints;
+
+		anim.speed = atkSpeed;
 	}
+
+	void InitializeValues() {
+		for (int i = 0; i < enemyLevel; i++) {
+			// Scaling per level
+			maxHitpoints += 2f; // HP
+			atkDelay -= 0.04f;
+            atkSpeed += 0.04f;
+			projectileForce += 0.025f;
+			idleDuration -= 0.01f;
+        }
+	}
+
 
 	void FixedUpdate() {
 		if (alive && player.GetComponent<PlayerController>().isAlive) {
@@ -77,36 +98,16 @@ public class Enemy : MonoBehaviour
 					isIdling = true;
 					StartCoroutine(IdleTimer());
 					anim.Play(IDLE);
-				}
+					randomPattern = AttackPattern.NONE;
+
+                }
 				break;
 			case State.Attacking:
 				if (!isAttacking) {
-					AttackPattern randomPattern = (AttackPattern)Random.Range(0, 4);
-					switch (randomPattern) {
-						case AttackPattern.Random:
-							bulletSpread = 2.5f;
-							StartCoroutine(ShootPlayer());
-							break;
-						case AttackPattern.AtTarget:
-							bulletSpread = 0f;
-							StartCoroutine(ShootPlayer());
-							break;
-						case AttackPattern.LeftRight:
-							bulletSpread = 0f;
-							xPosDir = maxLeftXPos;
-							StartCoroutine(ShootLeftRight());
-							break;
-						case AttackPattern.RightLeft:
-							bulletSpread = 0f;
-							xPosDir = maxRightXPos;
-							StartCoroutine(ShootRightLeft());
-							break;
-					}
-
-					
 					isAttacking = true;
-				}
-				break;
+					anim.Play(CASTING);
+				} else anim.Play(IDLE);
+                break;
 			case State.Damaged:
 				break;
 		}
@@ -148,73 +149,103 @@ public class Enemy : MonoBehaviour
 		state = nextState;
 	}
 
-	IEnumerator ShootPlayer() {
-		anim.Play(CASTING, 0, 0f);
-		GameObject proj = Instantiate(projectile, projectilePoint.transform.position, Quaternion.identity);
-		Vector2 myPos = projectilePoint.transform.position;
-		Vector2 targetPos = player.position;
+	public void ShootPlayer() {
+		if (randomPattern == AttackPattern.NONE) {
+			randomPattern = (AttackPattern)Random.Range(0, 4);
+			xPosDir = GetInitialXDirection(randomPattern);
 
-		var randomNumberX = Random.Range(-bulletSpread, bulletSpread);
-		var randomNumberY = Random.Range(-bulletSpread, bulletSpread);
-		Vector2 spread = new Vector2(randomNumberX, randomNumberY);
-		Vector2 direction = ((targetPos - myPos) + spread).normalized;
+        }
+        switch (randomPattern) {
+            case AttackPattern.Random:
+                bulletSpread = 2.5f;
+				// StartCoroutine(ShootPlayer());
+				TargetPlayerPattern();
+                break;
+            case AttackPattern.AtTarget:
+                bulletSpread = 0f;
+                // StartCoroutine(ShootPlayer());
+                TargetPlayerPattern();
+                break;
+            case AttackPattern.LeftRight:
+                bulletSpread = 0f;
 
-		proj.GetComponent<EnemyProjectile>().dmg = damage;
-		proj.GetComponent<EnemyProjectile>().direction = direction;
-		proj.GetComponent<EnemyProjectile>().projectileForce = projectileForce;
+				// StartCoroutine(ShootLeftRight());
+				LeftRightPattern();
+                break;
+            case AttackPattern.RightLeft:
+                bulletSpread = 0f;
 
-		yield return new WaitForSeconds(atkDelay);
-		if (state == State.Attacking && alive && player.GetComponent<PlayerController>().isAlive)
-			StartCoroutine(ShootPlayer());
+				// StartCoroutine(ShootRightLeft());
+				RightLeftPattern();
+                break;
+        }
+    }
+
+	private float GetInitialXDirection(AttackPattern attackPattern) {
+        float xTargetDir = 0f;
+
+		if (attackPattern == AttackPattern.LeftRight)
+			xTargetDir = maxLeftXPos;
+        else if (attackPattern == AttackPattern.RightLeft)
+            xTargetDir = maxRightXPos;
+
+        return xTargetDir;
 	}
+
+    public void RightLeftPattern() {
+        GameObject proj = Instantiate(projectile, projectilePoint.transform.position, Quaternion.identity);
+        Vector2 myPos = projectilePoint.transform.position;
+        Vector2 targetPos = new Vector2(xPosDir, -1.25f);
+
+        var randomNumberX = Random.Range(-bulletSpread, bulletSpread);
+        var randomNumberY = Random.Range(-bulletSpread, bulletSpread);
+        Vector2 spread = new Vector2(randomNumberX, randomNumberY);
+        Vector2 direction = ((targetPos - myPos) + spread).normalized;
+
+        proj.GetComponent<EnemyProjectile>().dmg = damage;
+        proj.GetComponent<EnemyProjectile>().direction = direction;
+        proj.GetComponent<EnemyProjectile>().projectileForce = projectileForce;
+
+		xPosDir -= atkDelay;
+	}
+
+	public void LeftRightPattern() {
+        GameObject proj = Instantiate(projectile, projectilePoint.transform.position, Quaternion.identity);
+        Vector2 myPos = projectilePoint.transform.position;
+        Vector2 targetPos = new Vector2(xPosDir, -1.25f);
+
+        var randomNumberX = Random.Range(-bulletSpread, bulletSpread);
+        var randomNumberY = Random.Range(-bulletSpread, bulletSpread);
+        Vector2 spread = new Vector2(randomNumberX, randomNumberY);
+        Vector2 direction = ((targetPos - myPos) + spread).normalized;
+
+        proj.GetComponent<EnemyProjectile>().dmg = damage;
+        proj.GetComponent<EnemyProjectile>().direction = direction;
+        proj.GetComponent<EnemyProjectile>().projectileForce = projectileForce;
+
+        xPosDir += atkDelay;
+    }
+
+	public void TargetPlayerPattern() {
+        GameObject proj = Instantiate(projectile, projectilePoint.transform.position, Quaternion.identity);
+        Vector2 myPos = projectilePoint.transform.position;
+        Vector2 targetPos = player.position;
+
+        var randomNumberX = Random.Range(-bulletSpread, bulletSpread);
+        var randomNumberY = Random.Range(-bulletSpread, bulletSpread);
+        Vector2 spread = new Vector2(randomNumberX, randomNumberY);
+        Vector2 direction = ((targetPos - myPos) + spread).normalized;
+
+        proj.GetComponent<EnemyProjectile>().dmg = damage;
+        proj.GetComponent<EnemyProjectile>().direction = direction;
+        proj.GetComponent<EnemyProjectile>().projectileForce = projectileForce;
+    }
 
 	IEnumerator IdleTimer() {
 		yield return new WaitForSeconds(idleDuration);
-		StopCoroutine(ShootPlayer());
 		ChangeState(State.Attacking, atkDuration, State.Idle);
 		isIdling = false;
 		isAttacking = false;
-	}
-
-	IEnumerator ShootLeftRight() {
-		anim.Play(CASTING, 0, 0f);
-		GameObject proj = Instantiate(projectile, projectilePoint.transform.position, Quaternion.identity);
-		Vector2 myPos = projectilePoint.transform.position;
-		Vector2 targetPos = new Vector2(xPosDir, -1.25f);
-
-		var randomNumberX = Random.Range(-bulletSpread, bulletSpread);
-		var randomNumberY = Random.Range(-bulletSpread, bulletSpread);
-		Vector2 spread = new Vector2(randomNumberX, randomNumberY);
-		Vector2 direction = ((targetPos - myPos) + spread).normalized;
-
-		proj.GetComponent<EnemyProjectile>().dmg = damage;
-		proj.GetComponent<EnemyProjectile>().direction = direction;
-		proj.GetComponent<EnemyProjectile>().projectileForce = projectileForce;
-		yield return new WaitForSeconds(atkDelay);
-		xPosDir += (atkDelay / atkDuration) * atkDuration;
-		if (state == State.Attacking && alive && player.GetComponent<PlayerController>().isAlive)
-			StartCoroutine(ShootLeftRight());
-	}
-
-	IEnumerator ShootRightLeft() {
-		anim.Play(CASTING, 0, 0f);
-		GameObject proj = Instantiate(projectile, projectilePoint.transform.position, Quaternion.identity);
-		Vector2 myPos = projectilePoint.transform.position;
-		Vector2 targetPos = new Vector2(xPosDir, -1.25f);
-
-		var randomNumberX = Random.Range(-bulletSpread, bulletSpread);
-		var randomNumberY = Random.Range(-bulletSpread, bulletSpread);
-		Vector2 spread = new Vector2(randomNumberX, randomNumberY);
-		Vector2 direction = ((targetPos - myPos) + spread).normalized;
-
-		proj.GetComponent<EnemyProjectile>().dmg = damage;
-		proj.GetComponent<EnemyProjectile>().direction = direction;
-		proj.GetComponent<EnemyProjectile>().projectileForce = projectileForce;
-		yield return new WaitForSeconds(atkDelay);
-
-		xPosDir -= (atkDelay / atkDuration) * atkDuration;
-		if (state == State.Attacking && alive && player.GetComponent<PlayerController>().isAlive)
-			StartCoroutine(ShootRightLeft());
 	}
 
 	IEnumerator DestroyDelay(float delay) {

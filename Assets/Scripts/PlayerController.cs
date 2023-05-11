@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.IO;
-using System.Linq;
 using UnityEngine.SceneManagement;
-using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -59,7 +56,10 @@ public class PlayerController : MonoBehaviour
 		slider.maxValue = maxHitpoints;
 		slider.value = hitpoints;
 
-		wordBank = GetSpell();
+        Debug.Log(wordBank);
+        wordBank = GetSpell().Split(' ');
+		Debug.Log(wordBank[0]);
+
         currentWord = wordBank[UnityEngine.Random.Range(0, wordBank.Length)];
 		
 		SetCurrentWord();
@@ -110,8 +110,10 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	private string[] GetSpell() {
-		return spellBank[UnityEngine.Random.Range(0, spellBank.Length)].Split(' ');
+	private string GetSpell() {
+		string spell = spellBank[UnityEngine.Random.Range(0, spellBank.Length)];
+
+        return spell;
 	}
 
 	public void DamagePlayer(float damage) {
@@ -176,7 +178,10 @@ public class PlayerController : MonoBehaviour
 	}
 
 	public void EnterLetter(string typedLetter) {
-		if (!IsCorrectLetter(typedLetter)) return;
+		if (!IsCorrectLetter(typedLetter)) {
+			accuracy++;
+            return;
+		}
 
         RemoveLetter();
 		if (IsWordComplete()) {
@@ -185,14 +190,16 @@ public class PlayerController : MonoBehaviour
             Attack();
 
             if (IsSpellFinish()) {
-				currWordIndex = 0;
-				wordBank = GetSpell();
-            } else SetCurrentWord();
+                currWordIndex = 0;
+				wordBank = GetSpell().Split(' ');
+            }
+
+			SetCurrentWord();
         }
-	}
+    }
 
 	private bool IsSpellFinish() {
-		return currWordIndex >= wordBank.Length;
+        return currWordIndex >= wordBank.Length;
     }
 
 	private bool IsCorrectLetter(string letter) {

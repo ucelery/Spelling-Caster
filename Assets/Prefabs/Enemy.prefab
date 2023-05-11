@@ -118,7 +118,7 @@ MonoBehaviour:
   projectileForce: 5
   cooldown: 0
   bulletSpread: 0
-  maxLeftXPos: -3.2
+  maxLeftXPos: -2.71
   maxRightXPos: 3.2
 --- !u!61 &7751346039423730636
 BoxCollider2D:

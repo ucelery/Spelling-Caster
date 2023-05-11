@@ -12,7 +12,9 @@ public class MainManager : MonoBehaviour
 
 	[Header("Properties")]
 	public float delay = 1f;
-	public Vector3 spawnPoint;
+
+	[SerializeField]
+	private Transform spawnPoint;
 	public int level = 1;
 
 	[Header("Required Objects")]
@@ -29,27 +31,29 @@ public class MainManager : MonoBehaviour
 
 	IEnumerator Spawn() {
 		yield return new WaitForSeconds(delay);
-		GameObject enemyInstance = Instantiate(enemyPrefab);
-		enemyInstance.transform.position = spawnPoint;
+
+		Enemy.enemyLevel = level;
+        GameObject enemyInstance = Instantiate(enemyPrefab);
+		enemyInstance.transform.position = spawnPoint.position;
 		level += 1;
 		levelText.GetComponent<Text>().text = "Level: " + level;
 
-		// Scaling
-		if ((level % 2) == 0) {
-			baseAtkDelay -= 0.04f;
-		} else if ((level % 5) == 0) {
-			baseProjForce += 0.5f;
-		} else if ((level % 10) == 0) {
-			baseIdleDuration -= -0.3f;
-		}
+		// // Scaling
+		// if ((level % 2) == 0) {
+		// 	baseAtkDelay -= 0.04f;
+		// } else if ((level % 5) == 0) {
+		// 	baseProjForce += 0.5f;
+		// } else if ((level % 10) == 0) {
+		// 	baseIdleDuration -= -0.3f;
+		// }
 
-		if (baseAtkDelay < 0.3f) baseAtkDelay = 0.3f;
-		if (baseProjForce > 10f) baseProjForce = 10f;
-		if (baseIdleDuration < 0.5) baseIdleDuration = 0.5f;
+		// if (baseAtkDelay < 0.3f) baseAtkDelay = 0.3f;
+		// if (baseProjForce > 10f) baseProjForce = 10f;
+		// if (baseIdleDuration < 0.5) baseIdleDuration = 0.5f;
 
-		enemyInstance.GetComponent<Enemy>().atkDelay = baseAtkDelay;
-		enemyInstance.GetComponent<Enemy>().projectileForce = baseProjForce;
-		enemyInstance.GetComponent<Enemy>().idleDuration = baseIdleDuration;
+		// enemyInstance.GetComponent<Enemy>().atkDelay = baseAtkDelay;
+		// enemyInstance.GetComponent<Enemy>().projectileForce = baseProjForce;
+		// enemyInstance.GetComponent<Enemy>().idleDuration = baseIdleDuration;
 
 	}
 }
