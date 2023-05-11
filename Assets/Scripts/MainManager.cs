@@ -20,7 +20,7 @@ public class MainManager : MonoBehaviour
 	public GameObject levelText;
 
 	private void Start() {
-		levelText.GetComponent<Text>().text = "Level: " + level;
+		levelText.GetComponent<Text>().text = "Level:\n" + level;
 	}
 
 	public void SpawnNewEnemy() {
