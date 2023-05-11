@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using static UnityEngine.EventSystems.EventTrigger;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
     public Slider energySlider;
     public Animator anim;
 	public GameObject cloneGO;
+	public TextMesh backText;
 
     // public GameObject debugX;
 
@@ -203,13 +205,29 @@ public class PlayerController : MonoBehaviour
 
 	private void SetCurrentWord() {
 		currentWord = wordBank[currWordIndex];
-		SetRemainingWord(currentWord);
-	}
+
+        backText.text = currentWord;
+
+        CenterTexts();
+
+        SetRemainingWord(currentWord);
+    }
 
 	private void SetRemainingWord(string str) {
 		remainingWord = str;
-		textObj.GetComponent<TextMesh>().text = remainingWord;
-	}
+		textObj.GetComponent<TextMesh>().text = currentWord.Substring(0, currentWord.Length - remainingWord.Length);
+    }
+
+	public void CenterTexts() {
+        MeshRenderer mesh = backText.GetComponent<MeshRenderer>();
+
+		float centerPos = -mesh.bounds.extents.x + transform.position.x;
+
+        Debug.Log(mesh.bounds.ToString());
+
+        textObj.transform.position = new Vector3(centerPos, textObj.transform.position.y, textObj.transform.position.z);
+        backText.transform.position = new Vector3(centerPos, backText.transform.position.y, backText.transform.position.z);
+    }
 
 	public void EnterLetter(string typedLetter) {
 		if (!IsCorrectLetter(typedLetter)) {

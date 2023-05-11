@@ -9,8 +9,10 @@ public class Enemy : MonoBehaviour {
 
 	private string CASTING = "Attack";
 	private string IDLE = "Idle";
-	public enum State { 
-		Idle, Attacking, Damaged
+    private string DEATH = "Idle";
+
+    public enum State { 
+		Idle, Attacking, Dead
 	}
 
 	public enum AttackPattern {
@@ -108,7 +110,7 @@ public class Enemy : MonoBehaviour {
 					anim.Play(CASTING);
 				}
                 break;
-			case State.Damaged:
+			case State.Dead:
 				break;
 		}
 	}
@@ -127,6 +129,7 @@ public class Enemy : MonoBehaviour {
 
 		if (hitpoints <= 0) {
 			alive = false;
+			ChangeState(State.Dead);
 			Terminate();
 		}
 	}
@@ -150,11 +153,11 @@ public class Enemy : MonoBehaviour {
 	}
 
 	public void ShootPlayer() {
-		if (randomPattern == AttackPattern.NONE) {
+        if (randomPattern == AttackPattern.NONE) {
 			randomPattern = (AttackPattern)Random.Range(0, 4);
 			xPosDir = GetInitialXDirection(randomPattern);
-
         }
+
         switch (randomPattern) {
             case AttackPattern.Random:
                 bulletSpread = 2.5f;
