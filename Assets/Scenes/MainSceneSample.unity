@@ -7420,11 +7420,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &566903168 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 3448530836066395375, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
-  m_PrefabInstance: {fileID: 3448530835542484335}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &607436809
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7521,6 +7516,17 @@ PrefabInstance:
 --- !u!114 &650820223 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3815479700824464484, guid: 7f3959b5ce5c51c4999679c29abeb4ae, type: 3}
+  m_PrefabInstance: {fileID: 2142874557}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &690356268 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1848599227854594111, guid: 7f3959b5ce5c51c4999679c29abeb4ae, type: 3}
   m_PrefabInstance: {fileID: 2142874557}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -8202,6 +8208,22 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2129163529238457440, guid: 7f3959b5ce5c51c4999679c29abeb4ae, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129163529238457440, guid: 7f3959b5ce5c51c4999679c29abeb4ae, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129163529238457440, guid: 7f3959b5ce5c51c4999679c29abeb4ae, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 257.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130331222811066396, guid: 7f3959b5ce5c51c4999679c29abeb4ae, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2755712024708327171, guid: 7f3959b5ce5c51c4999679c29abeb4ae, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -8210,10 +8232,38 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3258357238121359768, guid: 7f3959b5ce5c51c4999679c29abeb4ae, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnKeyClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 3258357238121359768, guid: 7f3959b5ce5c51c4999679c29abeb4ae, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: KeyboardManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 5561131482794329184, guid: 7f3959b5ce5c51c4999679c29abeb4ae, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1758900540}
+    - target: {fileID: 5914650653623232356, guid: 7f3959b5ce5c51c4999679c29abeb4ae, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5945610162922617122, guid: 7f3959b5ce5c51c4999679c29abeb4ae, type: 3}
+      propertyPath: m_Name
+      value: '!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7572788772117178681, guid: 7f3959b5ce5c51c4999679c29abeb4ae, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7572788772117178681, guid: 7f3959b5ce5c51c4999679c29abeb4ae, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8459500321688725977, guid: 7f3959b5ce5c51c4999679c29abeb4ae, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f3959b5ce5c51c4999679c29abeb4ae, type: 3}
 --- !u!1001 &3448530835542484335
@@ -8223,10 +8273,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2522913268952458599, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5655901542652550945, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -8276,109 +8322,12 @@ PrefabInstance:
       value: Player (1)
       objectReference: {fileID: 0}
     - target: {fileID: 5655901542652550947, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
-      propertyPath: anim
-      value: 
-      objectReference: {fileID: 566903168}
-    - target: {fileID: 5655901542652550947, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
-      propertyPath: damage
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5655901542652550947, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
       propertyPath: slider
       value: 
       objectReference: {fileID: 650820223}
     - target: {fileID: 5655901542652550947, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
-      propertyPath: revertTimeDelay
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5655901542652550947, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
-      propertyPath: wordBank.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5655901542652550947, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
-      propertyPath: wordBank.Array.data[0]
-      value: By the mystical forces that transcend mortal realms, let enchantment's
-        delicate strands intertwine and shape the tapestry of reality
-      objectReference: {fileID: 0}
-    - target: {fileID: 5655901542652550947, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
-      propertyPath: wordBank.Array.data[1]
-      value: With the ancient incantations that resonate through the cosmic symphony,
-        I summon the ethereal energies to breathe life into this spell
-      objectReference: {fileID: 0}
-    - target: {fileID: 5655901542652550947, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
-      propertyPath: wordBank.Array.data[2]
-      value: Through the veils of time and space, where secrets dwell and spirits
-        wander free, I beseech the ancient powers to grace this magic with their
-        otherworldly might
-      objectReference: {fileID: 0}
-    - target: {fileID: 5655901542652550947, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
-      propertyPath: wordBank.Array.data[3]
-      value: In the heart of celestial majesty, where stars are born and destinies
-        unfurl, I channel the cosmic energies to infuse this incantation with resplendent
-        power
-      objectReference: {fileID: 0}
-    - target: {fileID: 5655901542652550947, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
-      propertyPath: wordBank.Array.data[4]
-      value: With the wisdom of ages woven into the very fabric of existence, I command
-        the essence of magic to yield and weave its wonders into this mystical working
-      objectReference: {fileID: 0}
-    - target: {fileID: 5655901542652550947, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
-      propertyPath: wordBank.Array.data[5]
-      value: By the sacred words etched in the tome of wizardry, let this invocation
-        stir the dormant powers residing deep within the realms of the arcane
-      objectReference: {fileID: 0}
-    - target: {fileID: 5655901542652550947, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
-      propertyPath: wordBank.Array.data[6]
-      value: Through the convergence of elemental essences and the symphony of ethereal
-        resonance, I invoke the very essence of reality to shape and bless this conjuration
-      objectReference: {fileID: 0}
-    - target: {fileID: 5655901542652550947, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
-      propertyPath: wordBank.Array.data[7]
-      value: With the whispers of forgotten tongues and the echoes of ancient knowledge,
-        I channel the boundless depths of mystic arts to infuse this spell with captivating
-        prowess
-      objectReference: {fileID: 0}
-    - target: {fileID: 5655901542652550947, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
-      propertyPath: wordBank.Array.data[8]
-      value: By the ebb and flow of the cosmic tide, where magic and existence entwine,
-        I beckon the primordial guardians of sorcery to bless this evocation with
-        their divine touch
-      objectReference: {fileID: 0}
-    - target: {fileID: 5655901542652550947, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
-      propertyPath: wordBank.Array.data[9]
-      value: Through the luminous paths paved by starlight and the sacred geometry
-        that governs creation, I harness the raw power of cosmic forces to imbue
-        this working with unparalleled might
-      objectReference: {fileID: 0}
-    - target: {fileID: 5655901542652550947, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
-      propertyPath: wordBank.Array.data[10]
-      value: Through the luminous paths paved by starlight and the sacred geometry
-        that governs creation, I harness the raw power of cosmic forces to imbue
-        this working with unparalleled might
-      objectReference: {fileID: 0}
-    - target: {fileID: 5655901542652550951, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6457545045009295345, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6457545045009295345, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8659180817613844821, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
-      propertyPath: m_Font
+      propertyPath: energySlider
       value: 
-      objectReference: {fileID: 12800000, guid: ce81172ba3428cc408fc89a9acfa81f4, type: 3}
-    - target: {fileID: 8778408851618526618, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
-      propertyPath: m_CastShadows
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8778408851618526618, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ce81172ba3428cc408fc89a9acfa81f4, type: 3}
+      objectReference: {fileID: 690356268}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}

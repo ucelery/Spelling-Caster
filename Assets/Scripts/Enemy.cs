@@ -106,7 +106,7 @@ public class Enemy : MonoBehaviour {
 				if (!isAttacking) {
 					isAttacking = true;
 					anim.Play(CASTING);
-				} else anim.Play(IDLE);
+				}
                 break;
 			case State.Damaged:
 				break;

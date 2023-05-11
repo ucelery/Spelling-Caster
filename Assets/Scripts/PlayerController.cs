@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,22 +16,30 @@ public class PlayerController : MonoBehaviour
 	[Header("Player Stats")]
 	public float maxHitpoints = 100f;
 	public float hitpoints;
-	public float damage = 10f;
+
+    public float maxEnergy = 100f;
+    public float energy = 0;
+
+    public float damage = 10f;
 	public float speed = 10f;
 	public float deathDelay = 1f;
 
-	public bool isAlive = true;
+	public float drainSpeed = 10f;
+
+    public bool isAlive = true;
 
 	[Header("Required GameObjects")]
 	public Rigidbody2D rb;
 	public GameObject textObj;
 	public GameObject projectile;
 	public Slider slider;
-	public Animator anim;
+    public Slider energySlider;
+    public Animator anim;
+	public GameObject cloneGO;
 
-	// public GameObject debugX;
+    // public GameObject debugX;
 
-	[SerializeField]
+    [SerializeField]
 	[TextArea]
 	private string[] spellBank;
 
@@ -49,16 +58,25 @@ public class PlayerController : MonoBehaviour
 	TouchScreenKeyboard onScreenKb;
 	private float dirX;
 
-	void Start() {
+	public bool autoComplete = false;
+
+	[SerializeField]
+	[Range(0f, 1f)]
+    private float autoThreshold = 5f;
+
+	private TypeStatistics typeStat;
+
+    void Start() {
 		if (spellBank.Length < 1) Debug.LogWarning("Empty spell bank");
 
         hitpoints = maxHitpoints;
 		slider.maxValue = maxHitpoints;
 		slider.value = hitpoints;
 
-        Debug.Log(wordBank);
+		energySlider.maxValue = maxEnergy;
+        energySlider.value = energy;
+
         wordBank = GetSpell().Split(' ');
-		Debug.Log(wordBank[0]);
 
         currentWord = wordBank[UnityEngine.Random.Range(0, wordBank.Length)];
 		
@@ -107,6 +125,22 @@ public class PlayerController : MonoBehaviour
 			if (SystemInfo.deviceType != DeviceType.Handheld) {
 				Move();
 			}
+		}   
+
+        if (autoComplete) {
+			if (energy > 0) {
+				energy -= drainSpeed * Time.deltaTime;
+				energySlider.value = energy;
+			}
+
+			// Handle overflow
+			if (energy < 0) {
+				energy = 0;
+
+				// Disable PowerUp effect
+                cloneGO.SetActive(false);
+                autoComplete = false;
+            }
 		}
 	}
 
@@ -179,13 +213,20 @@ public class PlayerController : MonoBehaviour
 
 	public void EnterLetter(string typedLetter) {
 		if (!IsCorrectLetter(typedLetter)) {
-			accuracy++;
+			typeStat.mistakes++;
             return;
 		}
+
+		typeStat.correct++;
 
         RemoveLetter();
 		if (IsWordComplete()) {
 			currWordIndex++;
+
+			AddEnergy();
+
+			typeStat.correct = 0;
+			typeStat.mistakes = 0;
 
             Attack();
 
@@ -195,6 +236,20 @@ public class PlayerController : MonoBehaviour
             }
 
 			SetCurrentWord();
+        }
+    }
+
+	private void AddEnergy() {
+		if (energy < maxEnergy && !autoComplete) {
+			energy += 10 * (typeStat.correct / (typeStat.correct + typeStat.mistakes));
+			// Handle overflows
+			if (energy > maxEnergy) {
+				energy = maxEnergy;
+
+				// Activate Animation when energy is max
+                cloneGO.SetActive(true);
+            }
+            energySlider.value = energy;
         }
     }
 
@@ -208,7 +263,10 @@ public class PlayerController : MonoBehaviour
 	}    
 
 	private bool IsWordComplete() {
-		return remainingWord.Length == 0;
+		if (autoComplete)
+			return remainingWord.Length <= currentWord.Length / 2;
+
+        return remainingWord.Length == 0;
 	}
 
 	private bool IsWordCorrect(string word) {
@@ -227,6 +285,10 @@ public class PlayerController : MonoBehaviour
 		return false;
 	}
 
+	public void ActivatePowerUp() {
+		autoComplete = true;
+	}
+
 	IEnumerator PlayDeathAnimation() {
 		yield return new WaitForSeconds(deathDelay);
 		anim.Play(PLAYER_DEATH_ANIM);
@@ -237,4 +299,9 @@ public class PlayerController : MonoBehaviour
 		yield return new WaitForSeconds(delay);
 		SceneManager.LoadScene(name);
 	}
+
+	private struct TypeStatistics {
+		public float correct;
+        public float mistakes;
+    }
 }
