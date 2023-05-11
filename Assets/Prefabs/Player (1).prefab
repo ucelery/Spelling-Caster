@@ -205,6 +205,30 @@ MonoBehaviour:
   projectile: {fileID: 7084381907914178648, guid: 36e0b4d91e182a84f945c0197e8660e8, type: 3}
   slider: {fileID: 0}
   anim: {fileID: 0}
+  spellBank:
+  - by the mystical forces that transcend mortal realms let enchantments delicate
+    strands intertwine and shape the tapestry of reality
+  - with the ancient incantations that resonate through the cosmic symphony i summon
+    the ethereal energies to breathe life into this spell
+  - through the veils of time and space where secrets dwell and spirits wander free
+    i beseech the ancient powers to grace this magic with their otherworldly might
+  - in the heart of celestial majesty where stars are born and destinies unfurl i
+    channel the cosmic energies to infuse this incantation with resplendent power
+  - with the wisdom of ages woven into the very fabric of existence i command the
+    essence of magic to yield and weave its wonders into this mystical working
+  - by the sacred words etched in the tome of wizardry let this invocation stir the
+    dormant powers residing deep within the realms of the arcane
+  - through the convergence of elemental essences and the symphony of ethereal resonance
+    i invoke the very essence of reality to shape and bless this conjuration
+  - with the whispers of forgotten tongues and the echoes of ancient knowledge i
+    channel the boundless depths of mystic arts to infuse this spell with captivating
+    prowess
+  - by the ebb and flow of the cosmic tide where magic and existence entwine i beckon
+    the primordial guardians of sorcery to bless this evocation with their divine
+    touch
+  - through the luminous paths paved by starlight and the sacred geometry that governs
+    creation i harness the raw power of cosmic forces to imbue this working with
+    unparalleled might
   slowdownFactor: 0.05
 --- !u!61 &5655901542652550951
 BoxCollider2D:

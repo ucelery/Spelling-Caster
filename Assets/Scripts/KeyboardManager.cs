@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class KeyboardManager : MonoBehaviour {
+    [SerializeField]
+    private PlayerController player;
+        
     public void OnKeyClick(string key) {
-        Debug.Log(key);
+        player.SendMessage("EnterLetter", key);
     }
 }
