@@ -8196,6 +8196,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2522913268952458599, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
+      propertyPath: m_Name
+      value: Front Text
+      objectReference: {fileID: 0}
     - target: {fileID: 5655901542652550945, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -8249,9 +8253,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 650820223}
     - target: {fileID: 5655901542652550947, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
+      propertyPath: stats.speed
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 5655901542652550947, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
       propertyPath: energySlider
       value: 
       objectReference: {fileID: 690356268}
+    - target: {fileID: 5655901542652550947, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
+      propertyPath: stats.damage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5655901542652550947, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
+      propertyPath: stats.hitpoints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5655901542652550947, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
+      propertyPath: stats.maxEnergy
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5655901542652550947, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
+      propertyPath: stats.maxHitpoints
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6457545045009295345, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
       propertyPath: m_LocalScale.z
       value: -1
@@ -8259,6 +8283,10 @@ PrefabInstance:
     - target: {fileID: 6457545045009295345, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
       propertyPath: m_LocalPosition.z
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8659180817613844821, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
+      propertyPath: m_Color.rgba
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}

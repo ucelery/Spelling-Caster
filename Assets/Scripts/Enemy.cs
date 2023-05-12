@@ -216,7 +216,7 @@ public class Enemy : MonoBehaviour {
         //    Instantiate(drops.energyAmp, projectilePoint.transform.position, Quaternion.identity);
         //} 
 
-        if ((enemyLevel % 2) == 0) {
+        if ((enemyLevel % 4) == 0) {
             // HP RECOVERY
             Instantiate(drops.hpRecovery, projectilePoint.transform.position, Quaternion.identity);
         } else {
