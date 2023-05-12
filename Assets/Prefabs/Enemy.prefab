@@ -99,6 +99,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 041263c546f585e49b96274c44ed4e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drops:
+    hpRecovery: {fileID: 1164465916331063041, guid: 11a376e418f8b3641a96ab3d1d975c4e, type: 3}
+    energyRecovery: {fileID: 7638941968540801964, guid: 75d6105ad4c68e143a5f2007e6a8861c, type: 3}
+    hpAmp: {fileID: 7563353015832776189, guid: e37e41f34fcfac149a25368faf93d92d, type: 3}
+    energyAmp: {fileID: 7579417955048899183, guid: eef85f9e5f9c577448adb1b7d570d2c8, type: 3}
+    damageAmp: {fileID: 1873575292622573584, guid: 9b3495d1fd9cccf418176fbaaa41825e, type: 3}
   slider: {fileID: 0}
   audioSource: {fileID: 0}
   spawner: {fileID: 0}
@@ -109,11 +115,11 @@ MonoBehaviour:
   damage: 10
   maxHitpoints: 100
   hitpoints: 0
-  alive: 1
   destroyDelay: 2
   idleDuration: 1
   projectile: {fileID: 590617848912143186, guid: 97f65faf786ea63439b2bf4862965ea1, type: 3}
   atkDelay: 1
+  atkSpeed: 1
   atkDuration: 5
   projectileForce: 5
   cooldown: 0

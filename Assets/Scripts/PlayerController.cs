@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using static UnityEngine.EventSystems.EventTrigger;
-using TMPro;
+using SpellingCaster.Stats;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,14 +14,9 @@ public class PlayerController : MonoBehaviour
 	private string PLAYER_DEATH_ANIM = "Death";
 
 	[Header("Player Stats")]
-	public float maxHitpoints = 100f;
-	public float hitpoints;
+	[SerializeField]
+	public Stats stats;
 
-    public float maxEnergy = 100f;
-    public float energy = 0;
-
-    public float damage = 10f;
-	public float speed = 10f;
 	public float deathDelay = 1f;
 
 	public float drainSpeed = 10f;
@@ -79,12 +73,12 @@ public class PlayerController : MonoBehaviour
 
 		if (spellBank.Length < 1) Debug.LogWarning("Empty spell bank");
 
-        hitpoints = maxHitpoints;
-		slider.maxValue = maxHitpoints;
-		slider.value = hitpoints;
+        stats.hitpoints = stats.maxHitpoints;
+		slider.maxValue = stats.maxHitpoints;
+		slider.value = stats.hitpoints;
 
-		energySlider.maxValue = maxEnergy;
-        energySlider.value = energy;
+		energySlider.maxValue = stats.maxEnergy;
+        energySlider.value = stats.energy;
 
         wordBank = GetSpell().Split(' ');
 
@@ -93,9 +87,26 @@ public class PlayerController : MonoBehaviour
 		SetCurrentWord();
 
 		if (SystemInfo.deviceType == DeviceType.Handheld) {
-			speed *= 1.5f;
+            stats.speed *= 1.5f;
 		}
 	}
+
+	public void IncreaseStats(Stats addStats) {
+		stats.maxHitpoints += addStats.maxHitpoints;
+        stats.hitpoints += (addStats.hitpoints * stats.maxHitpoints);
+
+        stats.maxEnergy += addStats.maxEnergy;
+        stats.energy += (addStats.energy * stats.maxEnergy);
+
+		stats.damage += addStats.damage;
+        stats.speed += addStats.speed;
+
+		slider.maxValue = stats.maxHitpoints;
+		energySlider.maxValue = stats.maxEnergy;
+
+        slider.value = stats.hitpoints;
+        energySlider.value = stats.energy;
+    }
 
 	void Update() {
 		if (isAlive) {
@@ -138,14 +149,14 @@ public class PlayerController : MonoBehaviour
 		}   
 
         if (autoComplete) {
-			if (energy > 0) {
-				energy -= drainSpeed * Time.deltaTime;
-				energySlider.value = energy;
+			if (stats.energy > 0) {
+				stats.energy -= drainSpeed * Time.deltaTime;
+				energySlider.value = stats.energy;
 			}
 
 			// Handle overflow
-			if (energy < 0) {
-				energy = 0;
+			if (stats.energy < 0) {
+				stats.energy = 0;
 
 				// Disable PowerUp effect
                 cloneGO.SetActive(false);
@@ -164,10 +175,10 @@ public class PlayerController : MonoBehaviour
 		// Camera Shake
 		StartCoroutine(Camera.main.GetComponent<CameraMotor>().Shake(0.2f, 0.03f));
 
-		hitpoints -= damage;
-		slider.value = hitpoints;
+		stats.hitpoints -= damage;
+		slider.value = stats.hitpoints;
 
-		if (hitpoints <= 0) {
+		if (stats.hitpoints <= 0) {
 			// Gameover
 			rb.velocity = new Vector2(0, 0);
 			isAlive = false;
@@ -176,7 +187,7 @@ public class PlayerController : MonoBehaviour
 	}
 
 	private void TiltInput() {
-		dirX = Input.acceleration.x * speed * Time.deltaTime;
+		dirX = Input.acceleration.x * stats.speed * Time.deltaTime;
 		rb.velocity = new Vector2(dirX, 0);
 		// debugX.GetComponent<TextMesh>().text = dirX.ToString();
 	}
@@ -200,15 +211,15 @@ public class PlayerController : MonoBehaviour
 
 	private void Attack() {
 		Instantiate(projectile, transform.position, transform.rotation);
-		projectile.GetComponent<PlayerProjectile>().damage = damage;
+		projectile.GetComponent<PlayerProjectile>().damage = stats.damage;
 	}
 
 	private void MoveLeft() {
-		rb.velocity = new Vector3(-1f, 0, 0) * speed * Time.deltaTime;
+		rb.velocity = new Vector3(-1f, 0, 0) * stats.speed * Time.deltaTime;
 	}
 
 	private void MoveRight() {
-		rb.velocity = new Vector3(1f, 0, 0) * speed * Time.deltaTime;
+		rb.velocity = new Vector3(1f, 0, 0) * stats.speed * Time.deltaTime;
 	}
 
 	private void SetCurrentWord() {
@@ -264,16 +275,16 @@ public class PlayerController : MonoBehaviour
     }
 
 	private void AddEnergy() {
-		if (energy < maxEnergy && !autoComplete) {
-			energy += 10 * (typeStat.correct / (typeStat.correct + typeStat.mistakes));
+		if (stats.energy < stats.maxEnergy && !autoComplete) {
+			stats.energy += 10 * (typeStat.correct / (typeStat.correct + typeStat.mistakes));
 			// Handle overflows
-			if (energy > maxEnergy) {
-				energy = maxEnergy;
+			if (stats.energy > stats.maxEnergy) {
+				stats.energy = stats.maxEnergy;
 
 				// Activate Animation when energy is max
                 cloneGO.SetActive(true);
             }
-            energySlider.value = energy;
+            energySlider.value = stats.energy;
         }
     }
 

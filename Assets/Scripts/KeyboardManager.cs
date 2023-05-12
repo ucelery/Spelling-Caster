@@ -26,7 +26,7 @@ public class KeyboardManager : MonoBehaviour {
         player.SendMessage("EnterLetter", key);
 
         if (key == "!") {
-            if (player.energy >= player.maxEnergy)
+            if (player.stats.energy >= player.stats.maxEnergy)
                 player.SendMessage("ActivatePowerUp");
         }
 

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,18 @@ public class Enemy : MonoBehaviour {
 	public enum AttackPattern {
 		Random, LeftRight, RightLeft, AtTarget, NONE
 	}
+
+	[System.Serializable]
+    public struct Drops {
+		public GameObject hpRecovery;
+        public GameObject energyRecovery;
+        public GameObject hpAmp;
+        public GameObject energyAmp;
+        public GameObject damageAmp;
+    }
+
+	[SerializeField]
+	private Drops drops;
 
 	private Transform player;
 
@@ -75,7 +88,7 @@ public class Enemy : MonoBehaviour {
 	void InitializeValues() {
 		for (int i = 0; i < enemyLevel; i++) {
 			// Scaling per level
-			maxHitpoints += 2f; // HP
+			maxHitpoints += enemyLevel; // HP
 			atkDelay -= 0.04f;
             atkSpeed += 0.04f;
 			projectileForce += 0.025f;
@@ -133,7 +146,8 @@ public class Enemy : MonoBehaviour {
 
 	// Used by the animation
 	public void Terminate() {
-		Destroy(gameObject);
+		SpawnDrops();
+        Destroy(gameObject);
         spawner.GetComponent<MainManager>().SpawnNewEnemy();
     }
 
@@ -188,6 +202,25 @@ public class Enemy : MonoBehaviour {
 		Debug.Log(xPosDir);
         return xTargetDir;
 	}
+
+	private void SpawnDrops() {
+		if ((enemyLevel % 6) == 0) {
+			// DAMAGE AMP
+			Instantiate(drops.damageAmp, projectilePoint.transform.position, Quaternion.identity);
+        } else if ((enemyLevel % 3) == 0) {
+            // MAX HP UP
+            Instantiate(drops.hpAmp, projectilePoint.transform.position, Quaternion.identity);
+        } else if ((enemyLevel % 5) == 0) {
+            // MAX ENERGY UP
+            Instantiate(drops.energyAmp, projectilePoint.transform.position, Quaternion.identity);
+        } else if ((enemyLevel % 2) == 0) {
+            // HP RECOVERY
+            Instantiate(drops.hpRecovery, projectilePoint.transform.position, Quaternion.identity);
+        } else {
+            // ENERGY RECOVERY
+            Instantiate(drops.energyRecovery, projectilePoint.transform.position, Quaternion.identity);
+        }
+    }
 
 	#region [ Attack Patterns ]
 	public void RightLeftPattern() {
