@@ -231,8 +231,6 @@ public class PlayerController : MonoBehaviour
 
 		float centerPos = -mesh.bounds.extents.x + transform.position.x;
 
-        Debug.Log(mesh.bounds.ToString());
-
         textObj.transform.position = new Vector3(centerPos, textObj.transform.position.y, textObj.transform.position.z);
         backText.transform.position = new Vector3(centerPos, backText.transform.position.y, backText.transform.position.z);
     }

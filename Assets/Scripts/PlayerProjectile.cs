@@ -20,7 +20,7 @@ public class PlayerProjectile : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D col) {
 		if (col.gameObject.CompareTag("Enemy")) {
-			if (col.gameObject.GetComponent<Enemy>().alive) {
+			if (col.gameObject.GetComponent<Enemy>().state != Enemy.State.Dead) {
 				col.gameObject.GetComponent<Enemy>().DamageEnemy(damage);
 				Destroy(gameObject);
 			}

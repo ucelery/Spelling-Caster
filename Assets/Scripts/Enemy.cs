@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.SymbolStore;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +7,7 @@ public class Enemy : MonoBehaviour {
 
 	private string CASTING = "Attack";
 	private string IDLE = "Idle";
-    private string DEATH = "Idle";
+    private string DEATH = "Dead";
 
     public enum State { 
 		Idle, Attacking, Dead
@@ -38,7 +36,6 @@ public class Enemy : MonoBehaviour {
 	public float maxHitpoints = 100f;
 	public float hitpoints;
 
-	public bool alive = true;
 	public float destroyDelay = 2f;
 	[Header("Idle")]
 	public float idleDuration = 5f;
@@ -58,8 +55,8 @@ public class Enemy : MonoBehaviour {
 	public float maxRightXPos = 3.20f;
 
 	float xPosDir;
-	bool isAttacking = false;
 
+	private Coroutine stateRoutine = null;
 	private AttackPattern randomPattern = AttackPattern.NONE;
 
     void Start() {
@@ -88,7 +85,7 @@ public class Enemy : MonoBehaviour {
 
 
 	void FixedUpdate() {
-		if (alive && player.GetComponent<PlayerController>().isAlive) {
+		if (player.GetComponent<PlayerController>().isAlive) {
 			HandleStates();
 		}
 	}
@@ -96,23 +93,25 @@ public class Enemy : MonoBehaviour {
 	void HandleStates() {
 		switch (state) {
 			case State.Idle:
-				if (!isIdling) {
-					isIdling = true;
-					StartCoroutine(IdleTimer());
-					anim.Play(IDLE);
-					randomPattern = AttackPattern.NONE;
+				anim.Play(IDLE);
+				randomPattern = AttackPattern.NONE;
 
-                }
+                if (stateRoutine == null)
+					stateRoutine = StartCoroutine(IdleTimer(idleDuration));
 				break;
-			case State.Attacking:
-				if (!isAttacking) {
-					isAttacking = true;
-					anim.Play(CASTING);
-				}
+            case State.Attacking:
+                anim.Play(CASTING);
+
+				if (stateRoutine == null)
+					stateRoutine = StartCoroutine(AttackTimer(atkDuration));
                 break;
-			case State.Dead:
-				break;
-		}
+            case State.Dead:
+                anim.Play(DEATH);
+
+				StopAllCoroutines();
+				stateRoutine = null;
+                break;
+        }
 	}
 
 	public void ChangeState(State newState) {
@@ -128,31 +127,22 @@ public class Enemy : MonoBehaviour {
 		audioSource.Play();
 
 		if (hitpoints <= 0) {
-			alive = false;
 			ChangeState(State.Dead);
-			Terminate();
 		}
 	}
 
+	// Used by the animation
 	public void Terminate() {
-		// death animation
-		audioSource.clip = deathClip;
-		audioSource.Play();
-		StartCoroutine(DestroyDelay(destroyDelay));
-	}
-
-	public void ChangeState(State newState, float duration, State nextState) {
-		prevState = state;
-		state = newState;
-		StartCoroutine(StateTimer(duration, nextState));
-	}
-
-	IEnumerator StateTimer(float duration, State nextState) {
-		yield return new WaitForSeconds(duration);
-		state = nextState;
-	}
+		Destroy(gameObject);
+        spawner.GetComponent<MainManager>().SpawnNewEnemy();
+    }
 
 	public void ShootPlayer() {
+		if (state == State.Dead || state != State.Attacking) return;
+
+		if (stateRoutine == null)
+            stateRoutine = StartCoroutine(AttackTimer(atkDuration));
+
         if (randomPattern == AttackPattern.NONE) {
 			randomPattern = (AttackPattern)Random.Range(0, 4);
 			xPosDir = GetInitialXDirection(randomPattern);
@@ -187,15 +177,20 @@ public class Enemy : MonoBehaviour {
 	private float GetInitialXDirection(AttackPattern attackPattern) {
         float xTargetDir = 0f;
 
+		Debug.Log(attackPattern);
+
 		if (attackPattern == AttackPattern.LeftRight)
 			xTargetDir = maxLeftXPos;
         else if (attackPattern == AttackPattern.RightLeft)
             xTargetDir = maxRightXPos;
 
+		Debug.Log(maxLeftXPos);
+		Debug.Log(xPosDir);
         return xTargetDir;
 	}
 
-    public void RightLeftPattern() {
+	#region [ Attack Patterns ]
+	public void RightLeftPattern() {
         GameObject proj = Instantiate(projectile, projectilePoint.transform.position, Quaternion.identity);
         Vector2 myPos = projectilePoint.transform.position;
         Vector2 targetPos = new Vector2(xPosDir, -1.25f);
@@ -209,8 +204,12 @@ public class Enemy : MonoBehaviour {
         proj.GetComponent<EnemyProjectile>().direction = direction;
         proj.GetComponent<EnemyProjectile>().projectileForce = projectileForce;
 
-		xPosDir -= atkDelay;
-	}
+		xPosDir -= atkSpeed + (-0.04f * enemyLevel);
+
+        if (xPosDir < maxLeftXPos) {
+            randomPattern = AttackPattern.LeftRight;
+        }
+    }
 
 	public void LeftRightPattern() {
         GameObject proj = Instantiate(projectile, projectilePoint.transform.position, Quaternion.identity);
@@ -226,7 +225,11 @@ public class Enemy : MonoBehaviour {
         proj.GetComponent<EnemyProjectile>().direction = direction;
         proj.GetComponent<EnemyProjectile>().projectileForce = projectileForce;
 
-        xPosDir += atkDelay;
+        xPosDir += atkSpeed + (-0.04f * enemyLevel);
+
+		if (xPosDir > maxRightXPos) {
+			randomPattern = AttackPattern.RightLeft;
+		}
     }
 
 	public void TargetPlayerPattern() {
@@ -243,17 +246,17 @@ public class Enemy : MonoBehaviour {
         proj.GetComponent<EnemyProjectile>().direction = direction;
         proj.GetComponent<EnemyProjectile>().projectileForce = projectileForce;
     }
+    #endregion
 
-	IEnumerator IdleTimer() {
-		yield return new WaitForSeconds(idleDuration);
-		ChangeState(State.Attacking, atkDuration, State.Idle);
-		isIdling = false;
-		isAttacking = false;
-	}
-
-	IEnumerator DestroyDelay(float delay) {
+	IEnumerator AttackTimer(float delay) {
 		yield return new WaitForSeconds(delay);
-		Destroy(gameObject);
-		spawner.GetComponent<MainManager>().SpawnNewEnemy();
-	}
+		ChangeState(State.Idle);
+		stateRoutine = null;
+    }
+
+	IEnumerator IdleTimer(float delay) {
+        yield return new WaitForSeconds(delay);
+        ChangeState(State.Attacking);
+        stateRoutine = null;
+    }
 }
