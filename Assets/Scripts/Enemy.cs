@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Enemy : MonoBehaviour {
 	public static int enemyLevel = 1;
 
-	private string CASTING = "Attack";
+    private string CASTING = "Attack";
 	private string IDLE = "Idle";
     private string DEATH = "Dead";
 
@@ -88,7 +88,7 @@ public class Enemy : MonoBehaviour {
 	void InitializeValues() {
 		for (int i = 0; i < enemyLevel; i++) {
 			// Scaling per level
-			maxHitpoints += enemyLevel; // HP
+			maxHitpoints += 1; // HP
 			atkDelay -= 0.04f;
             atkSpeed += 0.04f;
 			projectileForce += 0.025f;
@@ -204,16 +204,19 @@ public class Enemy : MonoBehaviour {
 	}
 
 	private void SpawnDrops() {
-		if ((enemyLevel % 6) == 0) {
-			// DAMAGE AMP
-			Instantiate(drops.damageAmp, projectilePoint.transform.position, Quaternion.identity);
-        } else if ((enemyLevel % 3) == 0) {
-            // MAX HP UP
-            Instantiate(drops.hpAmp, projectilePoint.transform.position, Quaternion.identity);
-        } else if ((enemyLevel % 5) == 0) {
-            // MAX ENERGY UP
-            Instantiate(drops.energyAmp, projectilePoint.transform.position, Quaternion.identity);
-        } else if ((enemyLevel % 2) == 0) {
+		// Removed due to OP scaling
+        //if ((enemyLevel % 6) == 0) {
+        //    // DAMAGE AMP
+        //    Instantiate(drops.damageAmp, projectilePoint.transform.position, Quaternion.identity);
+        //} else if ((enemyLevel % 3) == 0) {
+        //    // MAX HP UP
+        //    Instantiate(drops.hpAmp, projectilePoint.transform.position, Quaternion.identity);
+        //} else if ((enemyLevel % 5) == 0) {
+        //    // MAX ENERGY UP
+        //    Instantiate(drops.energyAmp, projectilePoint.transform.position, Quaternion.identity);
+        //} 
+
+        if ((enemyLevel % 2) == 0) {
             // HP RECOVERY
             Instantiate(drops.hpRecovery, projectilePoint.transform.position, Quaternion.identity);
         } else {

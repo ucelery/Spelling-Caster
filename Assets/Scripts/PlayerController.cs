@@ -161,6 +161,7 @@ public class PlayerController : MonoBehaviour
 				// Disable PowerUp effect
                 cloneGO.SetActive(false);
                 autoComplete = false;
+				projectile.GetComponent<PlayerProjectile>().isPoweredUp = false;
             }
 		}
 	}
@@ -211,8 +212,12 @@ public class PlayerController : MonoBehaviour
 
 	private void Attack() {
 		Instantiate(projectile, transform.position, transform.rotation);
-		projectile.GetComponent<PlayerProjectile>().damage = stats.damage;
-	}
+        PlayerProjectile proj = projectile.GetComponent<PlayerProjectile>();
+		proj.damage = stats.damage;
+
+        if (autoComplete)
+			proj.isPoweredUp = true;
+    }
 
 	private void MoveLeft() {
 		rb.velocity = new Vector3(-1f, 0, 0) * stats.speed * Time.deltaTime;

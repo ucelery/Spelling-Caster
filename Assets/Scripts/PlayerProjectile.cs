@@ -6,14 +6,25 @@ public class PlayerProjectile : MonoBehaviour
 {
 	public Rigidbody2D rb;
 	public float projectileSpeed = 5f;
-	public float expireTimer = 5f;
+	public float expireTimer = 3f;
 	public float damage;
+	public bool isPoweredUp = false;
+
 	void Start() {
+        StartCoroutine(DestroyTimer());
+
+        if (isPoweredUp) return;
+
 		rb.AddForce(transform.up * projectileSpeed, ForceMode2D.Impulse);
-		StartCoroutine(DestroyTimer());
 	}
 
-	IEnumerator DestroyTimer() {
+    private void Update() {
+		if (!isPoweredUp) return;
+
+		transform.position = Vector2.MoveTowards(transform.position, new Vector2(0, 3.5f), projectileSpeed * Time.deltaTime);
+    }
+
+    IEnumerator DestroyTimer() {
 		yield return new WaitForSeconds(expireTimer);
 		Destroy(gameObject);
 	}
