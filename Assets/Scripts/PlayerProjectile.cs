@@ -6,7 +6,7 @@ public class PlayerProjectile : MonoBehaviour
 {
 	public Rigidbody2D rb;
 	public float projectileSpeed = 5f;
-	public float expireTimer = 3f;
+	public float expireTimer = 5f;
 	public float damage;
 	public bool isPoweredUp = false;
 
@@ -21,7 +21,7 @@ public class PlayerProjectile : MonoBehaviour
     private void Update() {
 		if (!isPoweredUp) return;
 
-		transform.position = Vector2.MoveTowards(transform.position, new Vector2(0, 3.5f), projectileSpeed * Time.deltaTime);
+		transform.position = Vector2.MoveTowards(transform.position, new Vector2(0, 5.82f), projectileSpeed * Time.deltaTime);
     }
 
     IEnumerator DestroyTimer() {

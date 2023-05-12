@@ -1049,7 +1049,7 @@ GameObject:
   - component: {fileID: 5862537422792567319}
   - component: {fileID: 4879176194513408644}
   m_Layer: 5
-  m_Name: Enemy
+  m_Name: Enemy HP Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

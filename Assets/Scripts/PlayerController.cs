@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     public Animator anim;
 	public GameObject cloneGO;
 	public TextMesh backText;
+	public Transform textRefPoint;
 
     // public GameObject debugX;
 
@@ -53,9 +54,6 @@ public class PlayerController : MonoBehaviour
 
 	TouchScreenKeyboard onScreenKb;
 	private float dirX;
-
-	[SerializeField]
-	private bool isInGame = true;
 	public bool autoComplete = false;
 
 	[SerializeField]
@@ -65,13 +63,8 @@ public class PlayerController : MonoBehaviour
 	private TypeStatistics typeStat;
 
     void Start() {
-		if (!isInGame) {
-			textObj.SetActive(false);
-			backText.gameObject.SetActive(false);
-			return;
-		}
-
 		if (spellBank.Length < 1) Debug.LogWarning("Empty spell bank");
+		if (slider == null) return;
 
         stats.hitpoints = stats.maxHitpoints;
 		slider.maxValue = stats.maxHitpoints;
@@ -245,7 +238,7 @@ public class PlayerController : MonoBehaviour
 	public void CenterTexts() {
         MeshRenderer mesh = backText.GetComponent<MeshRenderer>();
 
-		float centerPos = -mesh.bounds.extents.x + transform.position.x;
+		float centerPos = -mesh.bounds.extents.x + textRefPoint.position.x;
 
         textObj.transform.position = new Vector3(centerPos, textObj.transform.position.y, textObj.transform.position.z);
         backText.transform.position = new Vector3(centerPos, backText.transform.position.y, backText.transform.position.z);
