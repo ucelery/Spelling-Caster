@@ -60,6 +60,8 @@ public class PlayerController : MonoBehaviour
 	TouchScreenKeyboard onScreenKb;
 	private float dirX;
 
+	[SerializeField]
+	private bool isInGame = true;
 	public bool autoComplete = false;
 
 	[SerializeField]
@@ -69,6 +71,12 @@ public class PlayerController : MonoBehaviour
 	private TypeStatistics typeStat;
 
     void Start() {
+		if (!isInGame) {
+			textObj.SetActive(false);
+			backText.gameObject.SetActive(false);
+			return;
+		}
+
 		if (spellBank.Length < 1) Debug.LogWarning("Empty spell bank");
 
         hitpoints = maxHitpoints;
