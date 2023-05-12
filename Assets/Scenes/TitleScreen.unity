@@ -309,6 +309,14 @@ PrefabInstance:
       propertyPath: anim
       value: 
       objectReference: {fileID: 965414472}
+    - target: {fileID: 5655901542652550947, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
+      propertyPath: isInGame
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5655901542652550947, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
+      propertyPath: autoComplete
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8778408851618526618, guid: cea6c75fd0805b14b93110d43b8c8d44, type: 3}
       propertyPath: m_Enabled
       value: 0
