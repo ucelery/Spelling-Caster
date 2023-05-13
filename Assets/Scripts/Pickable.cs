@@ -13,9 +13,9 @@ public class Pickable : MonoBehaviour {
 
     private void Start() {
         // Scaling
-        addStats.damage += 0.3f * (Enemy.enemyLevel) / 3; // needs balancing
-        addStats.maxHitpoints += 0.3f * Enemy.enemyLevel; // needs balancing
-        addStats.maxEnergy += 0.5f * Enemy.enemyLevel; // needs balancing
+        //addStats.damage += 0.3f * (Enemy.enemyLevel) / 3; // needs balancing
+        //addStats.maxHitpoints += 0.3f * Enemy.enemyLevel; // needs balancing
+        //addStats.maxEnergy += 0.5f * Enemy.enemyLevel; // needs balancing
     }
 
     private void FixedUpdate() {
