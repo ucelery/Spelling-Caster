@@ -19,7 +19,7 @@ public class MainManager : MonoBehaviour
 
 	[SerializeField]
 	private Transform spawnPoint;
-	public int level = 1;
+	public static int level = 1;
 
 	[Header("Required Objects")]
 	public GameObject enemyPrefab;

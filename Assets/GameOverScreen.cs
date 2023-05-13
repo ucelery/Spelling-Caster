@@ -2,10 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameOverScreen : MonoBehaviour
 {
-	[Header("BGM")]
+	[Header("Statistics")]
+	public Text level;
+    public Text combo;
+    public Text correct;
+    public Text mistakes;
+
+    [Header("BGM")]
 	public GameObject bgm;
 	public AudioClip endClip;
 
@@ -20,8 +27,11 @@ public class GameOverScreen : MonoBehaviour
 
 	private bool donePlaying = false;
 	void Start() {
-
-	}
+		level.text = $"{MainManager.level}";
+        combo.text = $"{MainManager.typeStats.combo}";
+        correct.text = $"{MainManager.typeStats.correct}";
+        mistakes.text = $"{MainManager.typeStats.mistakes}";
+    }
 
 	void Update() {
 		HandleInputs();
