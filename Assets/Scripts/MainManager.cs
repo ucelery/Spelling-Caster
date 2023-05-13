@@ -26,6 +26,12 @@ public class MainManager : MonoBehaviour
 	public GameObject levelText;
 
 	private void Start() {
+        // Reset values
+        typeStats.mistakes = 0;
+		typeStats.correct = 0;
+		typeStats.combo = 0;
+
+        level = 1;
 		levelText.GetComponent<Text>().text = "Level:\n" + level;
 	}
 
