@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5820095425327699004}
   m_Layer: 0
   m_Name: Enemy Projectile
-  m_TagString: Untagged
+  m_TagString: Projectiles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,7 +102,6 @@ MonoBehaviour:
   dmg: 0
   projectileForce: 0
   direction: {x: 0, y: 0}
-  lifeSpan: 5
   rb: {fileID: 3095858654378293227}
 --- !u!50 &3095858654378293227
 Rigidbody2D:

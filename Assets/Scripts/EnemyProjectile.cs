@@ -16,10 +16,11 @@ public class EnemyProjectile : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D col) {
 		if (col.gameObject.CompareTag("Player")) {
 			col.gameObject.GetComponent<PlayerController>().DamagePlayer(dmg);
-		}
+            Destroy(gameObject);
+        }
 
-		if (col.gameObject.CompareTag("Enemy")) return;
-
-        Destroy(gameObject);
+		if (col.gameObject.CompareTag("Invisible Walls")) {
+            Destroy(gameObject);
+        }
     }
 }

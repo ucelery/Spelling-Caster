@@ -6,13 +6,10 @@ public class PlayerProjectile : MonoBehaviour
 {
 	public Rigidbody2D rb;
 	public float projectileSpeed = 5f;
-	public float expireTimer = 5f;
 	public float damage;
 	public bool isPoweredUp = false;
 
 	void Start() {
-        StartCoroutine(DestroyTimer());
-
         if (isPoweredUp) return;
 
 		rb.AddForce(transform.up * projectileSpeed, ForceMode2D.Impulse);
@@ -24,17 +21,16 @@ public class PlayerProjectile : MonoBehaviour
 		transform.position = Vector2.MoveTowards(transform.position, new Vector2(0, 5.82f), projectileSpeed * Time.deltaTime);
     }
 
-    IEnumerator DestroyTimer() {
-		yield return new WaitForSeconds(expireTimer);
-		Destroy(gameObject);
-	}
-
 	private void OnTriggerEnter2D(Collider2D col) {
 		if (col.gameObject.CompareTag("Enemy")) {
 			if (col.gameObject.GetComponent<Enemy>().state != Enemy.State.Dead) {
 				col.gameObject.GetComponent<Enemy>().DamageEnemy(damage);
-				Destroy(gameObject);
-			}
+                Destroy(gameObject);
+            }
 		}
-	}
+
+        if (col.gameObject.CompareTag("Invisible Walls")) {
+            Destroy(gameObject);
+        }
+    }
 }

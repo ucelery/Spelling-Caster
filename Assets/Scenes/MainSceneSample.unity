@@ -3287,7 +3287,7 @@ GameObject:
   - component: {fileID: 88684150}
   m_Layer: 0
   m_Name: Invisible Box (1)
-  m_TagString: Untagged
+  m_TagString: Invisible Walls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3406,7 +3406,7 @@ GameObject:
   - component: {fileID: 174009207}
   m_Layer: 0
   m_Name: Collisions
-  m_TagString: Untagged
+  m_TagString: Invisible Walls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7544,7 +7544,7 @@ GameObject:
   - component: {fileID: 690357819}
   m_Layer: 0
   m_Name: Invisible Box (4)
-  m_TagString: Untagged
+  m_TagString: Invisible Walls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7783,7 +7783,7 @@ GameObject:
   - component: {fileID: 841234744}
   m_Layer: 0
   m_Name: Invisible Box (1)
-  m_TagString: Untagged
+  m_TagString: Invisible Walls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8048,7 +8048,7 @@ GameObject:
   - component: {fileID: 1480788066}
   m_Layer: 0
   m_Name: Invisible Box (2)
-  m_TagString: Untagged
+  m_TagString: Invisible Walls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8192,7 +8192,7 @@ GameObject:
   - component: {fileID: 1580849296}
   m_Layer: 0
   m_Name: Invisible Box (5)
-  m_TagString: Untagged
+  m_TagString: Invisible Walls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8368,7 +8368,7 @@ GameObject:
   - component: {fileID: 1655466889}
   m_Layer: 0
   m_Name: Invisible Box (3)
-  m_TagString: Untagged
+  m_TagString: Invisible Walls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
