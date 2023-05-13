@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using SpellingCaster.Stats;
+using Unity.Collections.LowLevel.Unsafe;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
 	[Header("Player Stats")]
 	[SerializeField]
 	public Stats stats;
+	private float damage;
 
 	public float deathDelay = 1f;
 
@@ -32,7 +34,10 @@ public class PlayerController : MonoBehaviour
     public Animator anim;
 	public GameObject cloneGO;
 	public TextMesh backText;
-	public Transform textRefPoint;
+    public GameObject comboText;
+    public Transform textRefPoint;
+    public GameObject textWave;
+    private PlayerClone cloneEffect;
 
     // public GameObject debugX;
 
@@ -66,6 +71,7 @@ public class PlayerController : MonoBehaviour
 		if (spellBank.Length < 1) Debug.LogWarning("Empty spell bank");
 		if (slider == null) return;
 
+		cloneEffect = GetComponent<PlayerClone>();
         stats.hitpoints = stats.maxHitpoints;
 		slider.maxValue = stats.maxHitpoints;
 		slider.value = stats.hitpoints;
@@ -79,7 +85,9 @@ public class PlayerController : MonoBehaviour
 		
 		SetCurrentWord();
 
-		if (SystemInfo.deviceType == DeviceType.Handheld) {
+		damage = stats.baseDamage;
+
+        if (SystemInfo.deviceType == DeviceType.Handheld) {
             stats.speed *= 1.5f;
 		}
 	}
@@ -91,7 +99,6 @@ public class PlayerController : MonoBehaviour
         stats.maxEnergy += addStats.maxEnergy;
         stats.energy += (addStats.energy * stats.maxEnergy);
 
-		stats.damage += addStats.damage;
         stats.speed += addStats.speed;
 
 		slider.maxValue = stats.maxHitpoints;
@@ -151,8 +158,9 @@ public class PlayerController : MonoBehaviour
 			if (stats.energy < 0) {
 				stats.energy = 0;
 
-				// Disable PowerUp effect
-                cloneGO.SetActive(false);
+                // Disable PowerUp effect
+                cloneEffect.StopClones();
+
                 autoComplete = false;
 				projectile.GetComponent<PlayerProjectile>().isPoweredUp = false;
             }
@@ -206,7 +214,7 @@ public class PlayerController : MonoBehaviour
 	private void Attack() {
 		Instantiate(projectile, transform.position, transform.rotation);
         PlayerProjectile proj = projectile.GetComponent<PlayerProjectile>();
-		proj.damage = stats.damage;
+		proj.damage = damage;
 
         if (autoComplete)
 			proj.isPoweredUp = true;
@@ -247,13 +255,18 @@ public class PlayerController : MonoBehaviour
 	public void EnterLetter(string typedLetter) {
 		if (!IsCorrectLetter(typedLetter)) {
 			typeStat.mistakes++;
+			MainManager.typeStats.mistakes++;
             return;
 		}
 
 		typeStat.correct++;
+        MainManager.typeStats.correct++;
 
+        // ComboEffect();
         RemoveLetter();
 		if (IsWordComplete()) {
+			ComboCheck();
+
 			currWordIndex++;
 
 			AddEnergy();
@@ -272,6 +285,34 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+	private void ComboEffect() {
+		if (typeStat.combo >= 5) {
+			Vector3 textFront = textObj.transform.position;
+            GameObject textWaveIns = Instantiate(textWave, new Vector3(textFront.x, textFront.y, -1), Quaternion.identity);
+			textWaveIns.GetComponent<TextMesh>().text = textObj.GetComponent<TextMesh>().text;
+        }
+    }
+
+	private void ComboCheck() {
+		if (typeStat.mistakes < (float)(currentWord.Length * 0.4f)) {
+			typeStat.combo++;
+
+			if (typeStat.combo > MainManager.typeStats.combo) {
+                MainManager.typeStats.combo = typeStat.combo;
+            }
+        } else {
+			typeStat.combo = 0;
+        }
+
+        comboText.GetComponent<TextMesh>().text = typeStat.combo.ToString();
+
+        if (typeStat.combo > 5) {
+			damage = stats.baseDamage * stats.comboDmgMulti;
+		} else {
+            damage = stats.baseDamage;
+        }
+	}
+
 	private void AddEnergy() {
 		if (stats.energy < stats.maxEnergy && !autoComplete) {
 			stats.energy += 10 * (typeStat.correct / (typeStat.correct + typeStat.mistakes));
@@ -279,8 +320,8 @@ public class PlayerController : MonoBehaviour
 			if (stats.energy > stats.maxEnergy) {
 				stats.energy = stats.maxEnergy;
 
-				// Activate Animation when energy is max
-                cloneGO.SetActive(true);
+				// Activate clone effect when energy is max
+				cloneEffect.MakeClones();
             }
             energySlider.value = stats.energy;
         }
@@ -332,9 +373,4 @@ public class PlayerController : MonoBehaviour
 		yield return new WaitForSeconds(delay);
 		SceneManager.LoadScene(name);
 	}
-
-	private struct TypeStatistics {
-		public float correct;
-        public float mistakes;
-    }
 }

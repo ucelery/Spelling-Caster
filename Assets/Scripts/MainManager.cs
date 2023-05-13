@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using SpellingCaster.Stats;
 
 public class MainManager : MonoBehaviour
 {
-	[Header("Base Enemy Stats")]
+	[Header("Player Level Score")]
+	public static TypeStatistics typeStats;
+
+    [Header("Base Enemy Stats")]
 	public float baseAtkDelay = 1f;
 	public float baseProjForce = 5f;
 	public float baseIdleDuration = 3f;

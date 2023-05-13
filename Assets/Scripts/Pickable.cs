@@ -35,14 +35,18 @@ namespace SpellingCaster.Stats {
     [System.Serializable]
     public struct Stats {
         public float maxHitpoints;
-
         public float hitpoints;
-
         public float maxEnergy;
-
         public float energy;
-
-        public float damage;
+        public float baseDamage;
         public float speed;
+        public float comboDmgMulti;
+    }
+
+    [System.Serializable]
+    public struct TypeStatistics {
+        public float correct;
+        public float mistakes;
+        public float combo;
     }
 }
