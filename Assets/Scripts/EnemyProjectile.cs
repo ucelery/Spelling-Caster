@@ -9,7 +9,15 @@ public class EnemyProjectile : MonoBehaviour
 	public Vector2 direction;
 	public Rigidbody2D rb;
 
-	void FixedUpdate() {
+	[SerializeField] private Sprite[] projectileSprites;
+	[SerializeField] private SpriteRenderer renderer;
+
+    private void Start() {
+        int randomNum = Random.Range(0, projectileSprites.Length);
+        renderer.sprite = projectileSprites[randomNum];
+    }
+
+    void FixedUpdate() {
 		rb.velocity = direction * projectileForce;
 	}
 

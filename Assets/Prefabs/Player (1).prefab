@@ -107,7 +107,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 69
-  m_Sprite: {fileID: 5296944262663640658, guid: 1d86d005b13923b49bc8b19e94ff393f, type: 3}
+  m_Sprite: {fileID: 8952602579377156041, guid: 1fd32ff73f7b0504ea58a27a9f24e50e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -149,7 +149,9 @@ MonoBehaviour:
   anim: {fileID: 3448530836066395375}
   cloneGO: {fileID: 0}
   backText: {fileID: 0}
+  comboText: {fileID: 0}
   textRefPoint: {fileID: 0}
+  textWave: {fileID: 0}
   spellBank:
   - by the mystical forces that transcend mortal realms let enchantments delicate
     strands intertwine and shape the tapestry of reality
@@ -208,7 +210,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1.5}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

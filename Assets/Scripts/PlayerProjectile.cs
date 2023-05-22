@@ -9,7 +9,13 @@ public class PlayerProjectile : MonoBehaviour
 	public float damage;
 	public bool isPoweredUp = false;
 
+	[SerializeField] private Sprite[] sprites;
+	[SerializeField] private SpriteRenderer renderer;
+
 	void Start() {
+        int randomNum = Random.Range(0, sprites.Length);
+        renderer.sprite = sprites[randomNum];
+
         if (isPoweredUp) return;
 
 		rb.AddForce(transform.up * projectileSpeed, ForceMode2D.Impulse);
