@@ -8,8 +8,18 @@ using Unity.Collections.LowLevel.Unsafe;
 
 public class PlayerController : MonoBehaviour
 {
-	// ANIMATIONS
-	private string PLAYER_RUN_LEFT = "RunningLeft";
+	public static PlayerController Instance;
+
+    private void Awake() {
+        if (Instance == null) {
+			Instance = this;
+		} else {
+			Destroy(this);
+		}
+    }
+
+    // ANIMATIONS
+    private string PLAYER_RUN_LEFT = "RunningLeft";
 	private string PLAYER_RUN_RIGHT = "Running";
 	private string PLAYER_IDLE = "Idle";
 	private string PLAYER_DEATH_ANIM = "Death";
